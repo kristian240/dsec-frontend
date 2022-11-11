@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "PROXY_ENV=development next dev",
+		"dev": "cross-env PROXY_ENV=development next dev",
 		"build": "next build",
 		"postbuild": "next-sitemap",
 		"start": "next start",
@@ -12,7 +12,7 @@
 		"test": "jest",
 		"test:coverage": "jest --coverage",
 		"test:watch": "jest --watch",
-		"analyze": "ANALYZE=true npm run build",
+		"analyze": "cross-env ANALYZE=true npm run build",
 		"analyze:sourcemap": "source-map-explorer .next/static/**/*.js",
 		"prepare": "husky install"
 	},
@@ -31,6 +31,7 @@
 		"@chakra-ui/react": "^2.3.6",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
+		"cross-env": "^7.0.3",
 		"framer-motion": "^7.6.4",
 		"i18next": "^22.0.4",
 		"next": "~13.0.1",
