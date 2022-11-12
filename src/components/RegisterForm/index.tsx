@@ -1,5 +1,6 @@
 import { Button, FormErrorMessage, FormLabel, Input, Text, VStack } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { post } from '../../utils/network';
 
 export default function RegisterForm() {
 	const { handleSubmit } = useForm();
@@ -7,13 +8,23 @@ export default function RegisterForm() {
 	function onRegisterAction(formData) {
 		const requestBody = {
 			data: {
-				email: formData['register-email'],
 				firstName: formData['register-firstname'],
 				lastName: formData['register-lastname'],
+				email: formData['register-email'],
 				password: formData['register-password'],
 			},
 		};
+		post('/auth/register', requestBody)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((res) => {
+				if (res.errors && res.errors[0] && res.errors[0].message) {
+					console.log(res.errors[0].message);
+				}
+			});
 	}
+
 	return (
 		<form onSubmit={handleSubmit(onRegisterAction)}>
 			<VStack align="stretch">

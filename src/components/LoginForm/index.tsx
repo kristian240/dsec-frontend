@@ -1,5 +1,6 @@
 import { Button, FormLabel, Input, Text, VStack } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { post } from '../../utils/network';
 
 export default function LoginForm() {
 	const { handleSubmit } = useForm();
@@ -11,6 +12,15 @@ export default function LoginForm() {
 				password: formData['login-password'],
 			},
 		};
+		post('/auth/login', requestBody)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((res) => {
+				if (res.errors && res.errors[0] && res.errors[0].message) {
+					console.log(res.errors[0].message);
+				}
+			});
 	}
 	return (
 		<form onSubmit={handleSubmit(onLoginAction)}>
