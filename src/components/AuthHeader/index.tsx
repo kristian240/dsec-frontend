@@ -1,5 +1,6 @@
-import { Box, Heading, LinkBox, LinkOverlay, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
+import { Box, Heading, Link, LinkOverlay, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import NextLink from 'next/link';
 
 const indexMap = { '/login': 0, '/register': 1 };
 export default function AuthHeader() {
@@ -14,14 +15,18 @@ export default function AuthHeader() {
 			<Tabs isFitted index={indexMap[router.pathname]}>
 				<TabList>
 					<Tab>
-						<LinkBox>
-							<LinkOverlay href="/login">Login</LinkOverlay>
-						</LinkBox>
+						<Text>
+							<Link as={NextLink} href="/login">
+								Login
+							</Link>
+						</Text>
 					</Tab>
 					<Tab>
-						<LinkBox>
-							<LinkOverlay href="/register">Register</LinkOverlay>
-						</LinkBox>
+						<Text>
+							<Link as={NextLink} href="/register">
+								Register
+							</Link>
+						</Text>
 					</Tab>
 				</TabList>
 			</Tabs>
