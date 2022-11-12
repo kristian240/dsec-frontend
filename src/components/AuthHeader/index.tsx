@@ -1,6 +1,6 @@
-import { Box, Heading, Link, LinkOverlay, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { Box, Heading, Link, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 const indexMap = { '/login': 0, '/register': 1 };
 export default function AuthHeader() {
