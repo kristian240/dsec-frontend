@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000/api/api-proxy';
+const BASE_URL = process.env.API_BASE_PATH || 'http://localhost:3000/api/api-proxy';
 
 const defaultHeaders = {
 	'Content-Type': 'application/json',
