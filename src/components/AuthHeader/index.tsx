@@ -14,19 +14,11 @@ export default function AuthHeader() {
 			</Text>
 			<Tabs isFitted index={indexMap[router.pathname]}>
 				<TabList>
-					<Tab>
-						<Text>
-							<Link as={NextLink} href="/login">
-								Login
-							</Link>
-						</Text>
+					<Tab as={NextLink} href="/login">
+						Login
 					</Tab>
-					<Tab>
-						<Text>
-							<Link as={NextLink} href="/register">
-								Register
-							</Link>
-						</Text>
+					<Tab as={NextLink} href="/register">
+						Register
 					</Tab>
 				</TabList>
 			</Tabs>
