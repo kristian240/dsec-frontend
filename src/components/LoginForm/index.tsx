@@ -14,7 +14,7 @@ export default function LoginForm() {
 	}
 	return (
 		<form onSubmit={handleSubmit(onLoginAction)}>
-			<VStack align="strech">
+			<VStack align="stretch">
 				<FormLabel>Email</FormLabel>
 				<Input type="email" placeholder="Email" name="login-email" />
 				<FormLabel>Password</FormLabel>

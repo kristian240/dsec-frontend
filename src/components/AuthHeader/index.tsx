@@ -1,4 +1,4 @@
-import { Box, Heading, LinkBox, LinkOverlay, Tab, TabList, Tabs, Text, useControllableState } from '@chakra-ui/react';
+import { Box, Heading, LinkBox, LinkOverlay, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 const indexMap = { '/login': 0, '/register': 1 };

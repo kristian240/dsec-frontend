@@ -16,7 +16,7 @@ export default function RegisterForm() {
 	}
 	return (
 		<form onSubmit={handleSubmit(onRegisterAction)}>
-			<VStack align="strech">
+			<VStack align="stretch">
 				<FormLabel>Email</FormLabel>
 				<Input type="email" placeholder="Email" name="register-email" />
 				<FormErrorMessage>Email is required.</FormErrorMessage>
