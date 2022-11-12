@@ -4,23 +4,20 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 let apiUrl: string;
 
-switch (process.env.PROXY_ENV) {
-	// pick API endpoint depending on the PROXY_ENV, assign to apiUrl
+switch (process.env.API_PROXY_ENV) {
+	// pick API endpoint depending on the API_PROXY_ENV, assign to apiUrl
 	case 'production':
-		apiUrl = 'https://gbw-proxy-live.webserver-preview.fsnmm.de';
-		break;
-	case 'prelive':
-		apiUrl = 'https://gbw-proxy-uat.webserver-preview.fsnmm.de';
+		apiUrl = 'http://localhost:8080';
 		break;
 	default:
-		apiUrl = 'https://gbw-proxy-dev.webserver-preview.fsnmm.de';
+		apiUrl = 'http://localhost:8080';
 }
 
 const proxy = createProxyMiddleware({
 	target: apiUrl,
 	changeOrigin: true,
 	logLevel: 'debug',
-	cookieDomainRewrite: 'localhost',
+	cookieDomainRewrite: process.env.VERCEL_URL || process.env.APP_DOMAIN || 'localhost',
 	pathRewrite: {
 		'^/api/api-proxy': '',
 	},
