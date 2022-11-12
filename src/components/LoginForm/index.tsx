@@ -22,6 +22,7 @@ export default function LoginForm() {
 				}
 			});
 	}
+
 	return (
 		<form onSubmit={handleSubmit(onLoginAction)}>
 			<VStack align="stretch">

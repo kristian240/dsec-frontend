@@ -1,20 +1,18 @@
-const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8080';
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000/api/api-proxy';
 
 const defaultHeaders = {
 	'Content-Type': 'application/json',
 	'Access-Control-Allow-Credentials': 'true',
 };
 
-export const baseFetch = (endpoint, fetchOptions) => {
-	return fetch(`${BASE_URL}${endpoint}`, Object.assign({}, { credentials: 'include' }, fetchOptions)).then(
-		async (res) => {
-			if (res.status >= 400) {
-				return Promise.reject(await res.json());
-			}
+export const baseFetch = async (endpoint, fetchOptions) => {
+	const res = await fetch(`${BASE_URL}${endpoint}`, Object.assign({}, { credentials: 'include' }, fetchOptions));
 
-			return Promise.resolve(await res.json());
-		}
-	);
+	if (res.status >= 400) {
+		return res.json();
+	}
+
+	return res.json();
 };
 
 export const get = (endpoint, fetchOptions = {}) => {
