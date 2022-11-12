@@ -7,11 +7,9 @@ const defaultHeaders = {
 
 export const baseFetch = async (endpoint, fetchOptions) => {
 	const res = await fetch(`${BASE_URL}${endpoint}`, Object.assign({}, { credentials: 'include' }, fetchOptions));
-
 	if (res.status >= 400) {
-		return res.json();
+		return Promise.reject(await res.json());
 	}
-
 	return res.json();
 };
 
