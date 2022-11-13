@@ -1,12 +1,12 @@
 import { Button, Flex, Link } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import NextLink from 'next/link';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 interface IMainNavigationProps {}
 
 export const MainNavigation: FC<IMainNavigationProps> = ({ ...rest }) => {
-	const { t } = useTranslation();
+	const { t } = useTranslation('common');
 
 	return (
 		<Flex as="nav" justify="space-between" align="inherit" flex={1} {...rest}>
