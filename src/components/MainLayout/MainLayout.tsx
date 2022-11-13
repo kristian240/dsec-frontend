@@ -8,8 +8,8 @@ interface IMainLayoutProps extends FlexProps {
 
 export const MainLayout: FC<IMainLayoutProps> = ({ navigation, children, ...rest }) => {
 	return (
-		<Flex direction="column">
-			<Container as="header" maxW="1280px">
+		<Flex direction="column" minH="100vh">
+			<Container as="header" maxW="container.xl">
 				<Flex py={6} align="center">
 					<LogoSvg boxSize={10} mr={16} />
 
