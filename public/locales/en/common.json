@@ -1,3 +1,9 @@
 {
-	"home.title": "Home page"
+	"home.title": "Home page",
+	"label.aboutSsdlc": "About SSDLC",
+	"label.feature": "Feature",
+	"label.feature_other": "Features",
+	"label.help": "Help",
+	"label.logIn": "Log in",
+	"label.signUp": "Sign up"
 }
