@@ -1,4 +1,4 @@
-import { Button, FormLabel, Input, Text, useToast, VStack } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Text, useToast, VStack } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import useMutation from 'use-mutation';
 import { LoginFields, LoginFormValues, loginUser } from './utils';
@@ -17,11 +17,15 @@ export default function LoginForm() {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<VStack align="stretch">
-				<FormLabel>Email</FormLabel>
-				<Input type="email" placeholder="Email" {...register(LoginFields.EMAIL)} />
+				<FormControl isRequired>
+					<FormLabel>Email</FormLabel>
+					<Input type="email" placeholder="Email" {...register(LoginFields.EMAIL)} />
+				</FormControl>
 
-				<FormLabel>Password</FormLabel>
-				<Input type="password" placeholder="Password" {...register(LoginFields.PASSWORD)} />
+				<FormControl isRequired>
+					<FormLabel>Password</FormLabel>
+					<Input type="password" placeholder="Password" {...register(LoginFields.PASSWORD)} />
+				</FormControl>
 
 				<Button type="submit" colorScheme="blue">
 					Login
