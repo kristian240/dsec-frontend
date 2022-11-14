@@ -1,4 +1,4 @@
-import { Box, Heading, Link, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
+import { Box, Heading, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
