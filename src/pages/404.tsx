@@ -1,32 +1,30 @@
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
-import { Box, Container, Heading, Text } from '@chakra-ui/react';
-import { InferGetServerSidePropsType, NextPage } from 'next';
+import { Container, Heading, Text } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-type HomeProps = Partial<InferGetServerSidePropsType<typeof getServerSideProps>>;
-
-const Home: NextPage<HomeProps> = () => {
+const NotFoundPage: NextPage = () => {
 	const { t } = useTranslation();
 
 	return (
 		<MainLayout navigation={<MainNavigation />}>
 			<Container maxW="container.xl" mt={16}>
 				<Heading as="h2" textAlign="center">
-					{t('home.title')}
+					404
 				</Heading>
+
+				<Text textAlign="center">{t('message.error.pageNotFound')}</Text>
 			</Container>
 		</MainLayout>
 	);
 };
 
-export const getServerSideProps = async ({ locale }) => {
+export const getStaticProps = async ({ locale }) => {
 	return {
-		props: {
-			...(await serverSideTranslations(String(locale), ['common'])),
-		},
+		props: await serverSideTranslations(String(locale), ['common']),
 	};
 };
 
-export default Home;
+export default NotFoundPage;
