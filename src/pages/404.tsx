@@ -1,12 +1,13 @@
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
 import { Container, Heading, Text } from '@chakra-ui/react';
+import { NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { FC } from 'react';
 
-interface INotFoundPageProps {}
+const NotFoundPage: NextPage = () => {
+	const { t } = useTranslation();
 
-const NotFoundPage: FC<INotFoundPageProps> = ({ ...rest }) => {
 	return (
 		<MainLayout navigation={<MainNavigation />}>
 			<Container maxW="container.xl" mt={16}>
@@ -14,7 +15,7 @@ const NotFoundPage: FC<INotFoundPageProps> = ({ ...rest }) => {
 					404
 				</Heading>
 
-				<Text textAlign="center">This page cannot be found</Text>
+				<Text textAlign="center">{t('message.error.pageNotFound')}</Text>
 			</Container>
 		</MainLayout>
 	);
@@ -22,9 +23,7 @@ const NotFoundPage: FC<INotFoundPageProps> = ({ ...rest }) => {
 
 export const getStaticProps = async ({ locale }) => {
 	return {
-		props: {
-			...(await serverSideTranslations(String(locale), ['common'])),
-		},
+		props: await serverSideTranslations(String(locale), ['common']),
 	};
 };
 
