@@ -1,13 +1,11 @@
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
 import { Container, Heading, Text } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { FC } from 'react';
 
-interface INotFoundPageProps {}
-
-const NotFoundPage: FC<INotFoundPageProps> = () => {
+const NotFoundPage: NextPage = () => {
 	const { t } = useTranslation();
 
 	return (
