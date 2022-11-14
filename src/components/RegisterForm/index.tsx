@@ -1,14 +1,23 @@
 import { RegisterFields, RegisterFormValues, registerUser } from '@/components/RegisterForm/utils';
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, Text, useToast, VStack } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Text, useToast, VStack } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import useMutation from 'use-mutation';
 
 export default function RegisterForm() {
 	const { handleSubmit, register } = useForm<RegisterFormValues>();
 	const toast = useToast();
+	const router = useRouter();
 
 	const [onSubmit] = useMutation(registerUser, {
-		onSuccess: console.log,
+		onSuccess: () => {
+			toast({
+				title: 'Successful registration',
+				status: 'success',
+				description: 'You have successfully registered your account',
+			});
+			router.push('/login');
+		},
 		onFailure: ({ error }) => {
 			toast({ title: 'Ops! Something went wrong', status: 'error', description: error?.message });
 		},
@@ -27,8 +36,10 @@ export default function RegisterForm() {
 					<Input placeholder="First name" {...register(RegisterFields.FIRST_NAME)} />
 				</FormControl>
 
-				<FormLabel>Last name</FormLabel>
-				<Input placeholder="Last name" {...register(RegisterFields.LAST_NAME)} />
+				<FormControl isRequired>
+					<FormLabel>Last name</FormLabel>
+					<Input placeholder="Last name" {...register(RegisterFields.LAST_NAME)} />
+				</FormControl>
 
 				<FormControl isRequired>
 					<FormLabel>Password</FormLabel>

@@ -1,4 +1,5 @@
 import { Button, FormControl, FormLabel, Input, Text, useToast, VStack } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import useMutation from 'use-mutation';
 import { LoginFields, LoginFormValues, loginUser } from './utils';
@@ -6,9 +7,12 @@ import { LoginFields, LoginFormValues, loginUser } from './utils';
 export default function LoginForm() {
 	const { handleSubmit, register } = useForm<LoginFormValues>();
 	const toast = useToast();
+	const router = useRouter();
 
 	const [onSubmit] = useMutation(loginUser, {
-		onSuccess: console.log,
+		onSuccess: () => {
+			router.push('/');
+		},
 		onFailure: ({ error }) => {
 			toast({ title: 'Ops! Something went wrong', status: 'error', description: error?.message });
 		},
