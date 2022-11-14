@@ -5,5 +5,6 @@
 	"label.feature_other": "Features",
 	"label.help": "Help",
 	"label.logIn": "Log in",
-	"label.signUp": "Sign up"
+	"label.signUp": "Sign up",
+	"message.error.pageNotFound": "This page cannot be found"
 }
