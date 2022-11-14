@@ -1,6 +1,6 @@
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
-import { Box, Container, Heading, Text } from '@chakra-ui/react';
+import { Container, Heading } from '@chakra-ui/react';
 import { InferGetServerSidePropsType, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

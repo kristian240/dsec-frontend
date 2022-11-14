@@ -1,38 +1,40 @@
-import { Button, FormLabel, Input, Text, VStack } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Text, useToast, VStack } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { post } from '../../utils/network';
+import useMutation from 'use-mutation';
+import { LoginFields, LoginFormValues, loginUser } from './utils';
 
 export default function LoginForm() {
-	const { handleSubmit } = useForm();
+	const { handleSubmit, register } = useForm<LoginFormValues>();
+	const toast = useToast();
+	const router = useRouter();
 
-	function onLoginAction(formData) {
-		const requestBody = {
-			data: {
-				email: formData['login-email'],
-				password: formData['login-password'],
-			},
-		};
-		post('/auth/login', requestBody)
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((res) => {
-				if (res.errors && res.errors[0] && res.errors[0].message) {
-					console.log(res.errors[0].message);
-				}
-			});
-	}
+	const [onSubmit] = useMutation(loginUser, {
+		onSuccess: () => {
+			router.push('/');
+		},
+		onFailure: ({ error }) => {
+			toast({ title: 'Ops! Something went wrong', status: 'error', description: error?.message });
+		},
+	});
 
 	return (
-		<form onSubmit={handleSubmit(onLoginAction)}>
+		<form onSubmit={handleSubmit(onSubmit)}>
 			<VStack align="stretch">
-				<FormLabel>Email</FormLabel>
-				<Input type="email" placeholder="Email" name="login-email" />
-				<FormLabel>Password</FormLabel>
-				<Input type="password" placeholder="Password" name="login-password" />
+				<FormControl isRequired>
+					<FormLabel>Email</FormLabel>
+					<Input type="email" placeholder="Email" {...register(LoginFields.EMAIL)} />
+				</FormControl>
+
+				<FormControl isRequired>
+					<FormLabel>Password</FormLabel>
+					<Input type="password" placeholder="Password" {...register(LoginFields.PASSWORD)} />
+				</FormControl>
+
 				<Button type="submit" colorScheme="blue">
 					Login
 				</Button>
+
 				<Text textAlign="center">Have you forgot you password?</Text>
 			</VStack>
 		</form>
