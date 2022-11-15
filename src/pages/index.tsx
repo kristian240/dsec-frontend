@@ -4,6 +4,7 @@ import { Container, Heading } from '@chakra-ui/react';
 import { InferGetServerSidePropsType, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import path from 'path';
 
 type HomeProps = Partial<InferGetServerSidePropsType<typeof getServerSideProps>>;
 
@@ -27,6 +28,8 @@ export const getServerSideProps = async ({ locale }) => {
 	console.log('trans', (await serverSideTranslations(String(locale), ['common']))._nextI18Next);
 	console.log('trans.init', (await serverSideTranslations(String(locale), ['common']))._nextI18Next.initialI18nStore);
 	console.log('trans.user', (await serverSideTranslations(String(locale), ['common']))._nextI18Next.userConfig);
+	console.log('path', path.resolve(process.cwd(), `${'./public/locales'}/${locale}`));
+	console.log('patNew?', path.resolve(process.cwd(), `${'./locales'}/${locale}`));
 
 	return {
 		props: {
