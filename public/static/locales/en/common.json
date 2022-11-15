@@ -1,0 +1,11 @@
+{
+	"home.title": "Home page",
+	"label.aboutSsdlc": "About SSDLC",
+	"label.feature": "Feature",
+	"label.feature_other": "Features",
+	"label.help": "Help",
+	"label.logIn": "Log in",
+	"label.signUp": "Sign up",
+	"message.error.pageNotFound": "This page cannot be found",
+	"profilePage.title": "Welcome, {{ name }}!"
+}
