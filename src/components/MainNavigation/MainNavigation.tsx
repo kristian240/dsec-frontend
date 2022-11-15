@@ -1,7 +1,7 @@
 import { Button, Flex, Link } from '@chakra-ui/react';
-import React, { FC } from 'react';
-import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
+import NextLink from 'next/link';
+import { FC } from 'react';
 
 interface IMainNavigationProps {}
 
