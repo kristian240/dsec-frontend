@@ -1,7 +1,7 @@
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
 import { Container, Heading } from '@chakra-ui/react';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { InferGetServerSidePropsType, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -29,10 +29,10 @@ export const getServerSideProps = async ({ locale }) => {
 	console.log('trans', (await serverSideTranslations(String(locale), ['common']))._nextI18Next);
 	console.log('trans.init', (await serverSideTranslations(String(locale), ['common']))._nextI18Next.initialI18nStore);
 	console.log('trans.user', (await serverSideTranslations(String(locale), ['common']))._nextI18Next.userConfig);
-	console.log('path', readFileSync(path.resolve(process.cwd(), `${'./public/locales'}/${locale}`)));
-	console.log('patNew?', readFileSync(path.resolve(process.cwd(), `${'./locales'}/${locale}`)));
-	console.log('patNew?', readFileSync(path.resolve(process.cwd(), `${'./static/locales'}/${locale}`)));
-	console.log('patNew?', readFileSync(path.resolve(process.cwd(), `${'./public/static/locales'}/${locale}`)));
+	console.log('path', existsSync(path.resolve(process.cwd(), `${'./public/locales'}/${locale}`)));
+	console.log('patNew?', existsSync(path.resolve(process.cwd(), `${'./locales'}/${locale}`)));
+	console.log('patNew?', existsSync(path.resolve(process.cwd(), `${'./static/locales'}/${locale}`)));
+	console.log('patNew?', existsSync(path.resolve(process.cwd(), `${'./public/static/locales'}/${locale}`)));
 
 	return {
 		props: {
