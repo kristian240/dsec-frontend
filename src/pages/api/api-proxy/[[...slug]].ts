@@ -17,7 +17,7 @@ const proxy = createProxyMiddleware({
 	target: apiUrl,
 	changeOrigin: true,
 	logLevel: 'debug',
-	cookieDomainRewrite: process.env.VERCEL_URL || process.env.APP_DOMAIN || 'localhost',
+	cookieDomainRewrite: 'localhost',
 	pathRewrite: {
 		'^/api/api-proxy': '',
 	},
