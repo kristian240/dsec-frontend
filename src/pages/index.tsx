@@ -22,6 +22,10 @@ const Home: NextPage<HomeProps> = () => {
 };
 
 export const getServerSideProps = async ({ locale }) => {
+	console.log('locale', locale);
+
+	console.log('trans', await serverSideTranslations(String(locale), ['common']));
+
 	return {
 		props: {
 			...(await serverSideTranslations(String(locale), ['common'])),
