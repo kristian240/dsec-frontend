@@ -25,6 +25,8 @@ export const getServerSideProps = async ({ locale }) => {
 	console.log('locale', locale);
 
 	console.log('trans', (await serverSideTranslations(String(locale), ['common']))._nextI18Next);
+	console.log('trans.init', (await serverSideTranslations(String(locale), ['common']))._nextI18Next.initialI18nStore);
+	console.log('trans.user', (await serverSideTranslations(String(locale), ['common']))._nextI18Next.userConfig);
 
 	return {
 		props: {
