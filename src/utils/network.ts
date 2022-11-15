@@ -5,15 +5,19 @@ const defaultHeaders = {
 	'Access-Control-Allow-Credentials': 'true',
 };
 
-export const baseFetch = async (endpoint, fetchOptions) => {
+export const baseFetch = async (endpoint: string, fetchOptions: RequestInit) => {
 	const res = await fetch(`${BASE_URL}${endpoint}`, Object.assign({}, { credentials: 'include' }, fetchOptions));
+
+	const data = res.headers.get('content-length') === '0' ? Promise.resolve({}) : res.json();
+
 	if (res.status >= 400) {
-		return Promise.reject(await res.json());
+		return Promise.reject(await data);
 	}
-	return res.json();
+
+	return data;
 };
 
-export const get = (endpoint, fetchOptions = {}) => {
+export const get = (endpoint: string, fetchOptions: RequestInit = {}) => {
 	const reqOptions = Object.assign({}, fetchOptions, {
 		method: 'GET',
 		headers: Object.assign({}, defaultHeaders, fetchOptions.headers),
@@ -22,7 +26,7 @@ export const get = (endpoint, fetchOptions = {}) => {
 	return baseFetch(endpoint, reqOptions);
 };
 
-export const post = (endpoint, body = {}, fetchOptions = {}) => {
+export const post = (endpoint: string, body = {}, fetchOptions: RequestInit = {}) => {
 	const reqOptions = Object.assign({}, fetchOptions, {
 		method: 'POST',
 		headers: Object.assign({}, defaultHeaders, fetchOptions.headers),
@@ -32,7 +36,7 @@ export const post = (endpoint, body = {}, fetchOptions = {}) => {
 	return baseFetch(endpoint, reqOptions);
 };
 
-export const update = (endpoint, body = {}, fetchOptions = {}) => {
+export const update = (endpoint: string, body = {}, fetchOptions: RequestInit = {}) => {
 	const reqOptions = Object.assign({}, fetchOptions, {
 		method: 'PATCH',
 		headers: Object.assign({}, defaultHeaders, fetchOptions.headers),
@@ -42,7 +46,7 @@ export const update = (endpoint, body = {}, fetchOptions = {}) => {
 	return baseFetch(endpoint, reqOptions);
 };
 
-export const destroy = (endpoint, fetchOptions = {}) => {
+export const destroy = (endpoint: string, fetchOptions: RequestInit = {}) => {
 	const reqOptions = Object.assign({}, fetchOptions, {
 		method: 'DELETE',
 		headers: Object.assign({}, defaultHeaders, fetchOptions.headers),
