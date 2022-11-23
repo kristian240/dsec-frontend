@@ -33,17 +33,48 @@ export default function RegisterForm() {
 
 				<FormControl isRequired>
 					<FormLabel>First name</FormLabel>
-					<Input placeholder="First name" {...register(RegisterFields.FIRST_NAME)} />
+					<Input
+						pattern="[A-Za-z]{1,32}"
+						title="First name should contain only letters."
+						placeholder="First name"
+						{...register(RegisterFields.FIRST_NAME)}
+					/>
 				</FormControl>
 
 				<FormControl isRequired>
 					<FormLabel>Last name</FormLabel>
-					<Input placeholder="Last name" {...register(RegisterFields.LAST_NAME)} />
+					<Input
+						pattern="[A-Za-z]{1,32}"
+						title="Last name should contain only letters."
+						placeholder="Last name"
+						{...register(RegisterFields.LAST_NAME)}
+					/>
 				</FormControl>
 
 				<FormControl isRequired>
 					<FormLabel>Password</FormLabel>
-					<Input type="password" placeholder="Password" {...register(RegisterFields.PASSWORD)} />
+					<Input
+						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,}$"
+						title="Password is too simple.
+						Length must be 10 or more characters.
+						Try using uppercase, digit and special characters."
+						type="password"
+						placeholder="Password"
+						{...register(RegisterFields.PASSWORD)}
+					/>
+				</FormControl>
+
+				<FormControl isRequired>
+					<FormLabel>Repeat password</FormLabel>
+					<Input
+						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,}$"
+						title="Password is too simple.
+						Length must be 10 or more characters.
+						Try using uppercase, digit and special characters."
+						type="password"
+						placeholder="Repeat password"
+						{...register(RegisterFields.PASSWORD_REPEAT)}
+					/>
 				</FormControl>
 
 				<Button type="submit" colorScheme="blue">
