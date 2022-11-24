@@ -6,7 +6,7 @@ import { Box } from '@chakra-ui/react';
 export default function LoginPage() {
 	return (
 		<MainLayout>
-			<Box mx="auto" my="100px" maxW="500px">
+			<Box mx="auto" my="70px" maxW="500px">
 				<AuthHeader />
 				<LoginForm />
 			</Box>
