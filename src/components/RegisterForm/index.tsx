@@ -1,11 +1,19 @@
 import { RegisterFields, RegisterFormValues, registerUser } from '@/components/RegisterForm/utils';
-import { Button, FormControl, FormLabel, Input, Text, useToast, VStack } from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Text, useToast, VStack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import useMutation from 'use-mutation';
 
 export default function RegisterForm() {
-	const { handleSubmit, register } = useForm<RegisterFormValues>();
+	const {
+		handleSubmit,
+		register,
+		formState: { errors },
+	} = useForm<RegisterFormValues>({
+		criteriaMode: 'all',
+		mode: 'all',
+	});
+
 	const toast = useToast();
 	const router = useRouter();
 
@@ -26,55 +34,92 @@ export default function RegisterForm() {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<VStack align="stretch">
-				<FormControl isRequired>
+				<FormControl isInvalid={Boolean(errors[RegisterFields.EMAIL])}>
 					<FormLabel>Email</FormLabel>
-					<Input type="email" placeholder="Email" {...register(RegisterFields.EMAIL)} />
+					<Input
+						type="email"
+						placeholder="Email"
+						{...register(RegisterFields.EMAIL, {
+							required: 'Email is required.',
+							pattern: {
+								value: /.*@.*/,
+								message: 'Email is not valid.',
+							},
+						})}
+					/>
+					<FormErrorMessage>{errors[RegisterFields.EMAIL]?.message}</FormErrorMessage>
 				</FormControl>
 
-				<FormControl isRequired>
+				<FormControl isInvalid={Boolean(errors[RegisterFields.FIRST_NAME])}>
 					<FormLabel>First name</FormLabel>
 					<Input
-						pattern="[A-Za-z]{1,32}"
-						title="First name should contain only letters."
 						placeholder="First name"
-						{...register(RegisterFields.FIRST_NAME)}
+						{...register(RegisterFields.FIRST_NAME, {
+							required: 'First name is required.',
+							pattern: {
+								value: /^[a-zA-Z]+$/,
+								message: 'First name must contain only letters.',
+							},
+							maxLength: {
+								value: 32,
+								message: 'First name should be only 32 characters long.',
+							},
+						})}
 					/>
+					<FormErrorMessage>{errors[RegisterFields.FIRST_NAME]?.message}</FormErrorMessage>
 				</FormControl>
 
-				<FormControl isRequired>
+				<FormControl isInvalid={Boolean(errors[RegisterFields.LAST_NAME])}>
 					<FormLabel>Last name</FormLabel>
 					<Input
-						pattern="[A-Za-z]{1,32}"
-						title="Last name should contain only letters."
 						placeholder="Last name"
-						{...register(RegisterFields.LAST_NAME)}
+						{...register(RegisterFields.LAST_NAME, {
+							required: 'Last name is required.',
+							pattern: {
+								value: /^[a-zA-Z]+$/,
+								message: 'Last name must contain only letters.',
+							},
+							maxLength: {
+								value: 32,
+								message: 'Last name should be only 32 characters long.',
+							},
+						})}
 					/>
+					<FormErrorMessage>{errors[RegisterFields.LAST_NAME]?.message}</FormErrorMessage>
 				</FormControl>
 
-				<FormControl isRequired>
+				<FormControl isInvalid={Boolean(errors[RegisterFields.PASSWORD])}>
 					<FormLabel>Password</FormLabel>
 					<Input
-						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,}$"
-						title="Password is too simple.
-						Length must be 10 or more characters.
-						Try using uppercase, digit and special characters."
 						type="password"
 						placeholder="Password"
-						{...register(RegisterFields.PASSWORD)}
+						{...register(RegisterFields.PASSWORD, {
+							required: 'Passsword is required.',
+							pattern: {
+								value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,}$/,
+								message:
+									'Password is too simple. Length must be 10 or more characters. Use uppercase, digit and special characters.',
+							},
+						})}
 					/>
+					<FormErrorMessage>{errors[RegisterFields.PASSWORD]?.message}</FormErrorMessage>
 				</FormControl>
 
-				<FormControl isRequired>
+				<FormControl isInvalid={Boolean(errors[RegisterFields.PASSWORD_REPEAT])}>
 					<FormLabel>Repeat password</FormLabel>
 					<Input
-						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,}$"
-						title="Password is too simple.
-						Length must be 10 or more characters.
-						Try using uppercase, digit and special characters."
 						type="password"
 						placeholder="Repeat password"
-						{...register(RegisterFields.PASSWORD_REPEAT)}
+						{...register(RegisterFields.PASSWORD_REPEAT, {
+							required: 'You have to repeat your password.',
+							pattern: {
+								value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,}$/,
+								message:
+									'Password is too simple. Length must be 10 or more characters. Use uppercase, digit and special characters.',
+							},
+						})}
 					/>
+					<FormErrorMessage>{errors[RegisterFields.PASSWORD_REPEAT]?.message}</FormErrorMessage>
 				</FormControl>
 
 				<Button type="submit" colorScheme="blue">
