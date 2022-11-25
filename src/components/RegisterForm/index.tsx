@@ -11,7 +11,7 @@ export default function RegisterForm() {
 		formState: { errors },
 	} = useForm<RegisterFormValues>({
 		criteriaMode: 'all',
-		mode: 'all',
+		mode: 'onBlur',
 	});
 
 	const toast = useToast();
