@@ -46,31 +46,31 @@ const Variants: { img: StaticImageData; bg: string; title: string; url: string }
 		img: Requirements,
 		bg: '#4042E2',
 		title: 'Requirements',
-		url: '/wiki/requirements',
+		url: '/wiki/example',
 	},
 	{
 		img: Design,
 		bg: '#FF8077',
 		title: 'Design',
-		url: '/wiki/design',
+		url: '/wiki/example',
 	},
 	{
 		img: Development,
 		bg: '#7D97F4',
 		title: 'Development',
-		url: '/wiki/development',
+		url: '/wiki/example',
 	},
 	{
 		img: Testing,
 		bg: '#A13976',
 		title: 'Testing',
-		url: '/wiki/testing',
+		url: '/wiki/example',
 	},
 	{
 		img: Deployment,
 		bg: '#F29A33',
 		title: 'Deployment',
-		url: '/wiki/deployment',
+		url: '/wiki/example',
 	},
 ];
 
