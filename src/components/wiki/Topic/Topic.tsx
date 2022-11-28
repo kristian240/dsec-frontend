@@ -52,25 +52,25 @@ const Variants: { img: StaticImageData; bg: string; title: string; url: string }
 		img: Design,
 		bg: '#FF8077',
 		title: 'Design',
-		url: '/wiki/requirements',
+		url: '/wiki/design',
 	},
 	{
 		img: Development,
 		bg: '#7D97F4',
 		title: 'Development',
-		url: '/wiki/requirements',
+		url: '/wiki/development',
 	},
 	{
 		img: Testing,
 		bg: '#A13976',
 		title: 'Testing',
-		url: '/wiki/requirements',
+		url: '/wiki/testing',
 	},
 	{
 		img: Deployment,
 		bg: '#F29A33',
 		title: 'Deployment',
-		url: '/wiki/requirements',
+		url: '/wiki/deployment',
 	},
 ];
 
