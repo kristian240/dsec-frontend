@@ -1,6 +1,6 @@
 export enum CreateProjectSteps {
 	ProjectDetails = 'projectDetails',
-	GiovanniProject = 'giovanniProject',
+	NewAnalysis = 'newAnalysis',
 	Priorities = 'priorities',
 	GitHubIntegration = 'gitHubIntegration',
 	Success = 'success',
@@ -8,7 +8,7 @@ export enum CreateProjectSteps {
 
 export const steps = [
 	CreateProjectSteps.ProjectDetails,
-	CreateProjectSteps.GiovanniProject,
+	CreateProjectSteps.NewAnalysis,
 	CreateProjectSteps.Priorities,
 	CreateProjectSteps.GitHubIntegration,
 ];

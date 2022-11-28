@@ -9,7 +9,7 @@
 	"message.error.pageNotFound": "This page cannot be found",
 	"profilePage.title": "Welcome, {{ name }}!",
 	"createProject.step.projectDetails.header": "Create new project",
-	"createProject.step.giovanniProject.header": "Giovanni design goes here",
+	"createProject.step.newAnalysis.header": "New analysis",
 	"createProject.step.priorities.header": "Prioritization",
 	"createProject.step.gitHubIntegration.header": "Github integration",
 	"createProject.step.success.header": "Congratulations!"
