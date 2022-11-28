@@ -7,7 +7,10 @@ let apiUrl: string;
 switch (process.env.API_PROXY_ENV) {
 	// pick API endpoint depending on the API_PROXY_ENV, assign to apiUrl
 	case 'production':
-		apiUrl = 'http://localhost:8080';
+		apiUrl = 'https://dsec-backend.herokuapp.com/';
+		break;
+	case 'staging':
+		apiUrl = 'https://dsec-backend-staging.herokuapp.com/';
 		break;
 	default:
 		apiUrl = 'http://localhost:8080';
@@ -36,6 +39,9 @@ const proxy = createProxyMiddleware({
 		proxyRes.headers['set-cookie'] = adaptCookiesForLocalhost;
 	},
 	onError: (err: Error) => console.error(err),
+	onProxyReq: (proxyReq) => {
+		proxyReq.removeHeader('origin');
+	},
 });
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<unknown>) {
