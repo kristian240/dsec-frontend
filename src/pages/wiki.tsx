@@ -2,12 +2,12 @@ import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
 import Topic, { Topics } from '@/components/wiki/Topic';
 import { Container, Flex, Heading } from '@chakra-ui/react';
-import { InferGetStaticPropsType } from 'next';
+import { InferGetStaticPropsType, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type WikiPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Wiki = () => {
+const Wiki: NextPage<WikiPageProps> = () => {
 	return (
 		<MainLayout navigation={<MainNavigation />}>
 			<Container maxW="container.xl" mt={16}>
