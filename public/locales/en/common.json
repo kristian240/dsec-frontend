@@ -7,5 +7,10 @@
 	"label.logIn": "Log in",
 	"label.signUp": "Sign up",
 	"message.error.pageNotFound": "This page cannot be found",
-	"profilePage.title": "Welcome, {{ name }}!"
+	"profilePage.title": "Welcome, {{ name }}!",
+	"createProject.step.projectDetails.header": "Create new project",
+	"createProject.step.giovanniProject.header": "Giovanni design goes here",
+	"createProject.step.priorities.header": "Prioritization",
+	"createProject.step.gitHubIntegration.header": "Github integration",
+	"createProject.step.success.header": "Congratulations!"
 }
