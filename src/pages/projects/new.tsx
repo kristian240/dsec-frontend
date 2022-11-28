@@ -3,7 +3,9 @@ import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
 import { CreateProjectFormLayout } from '@/components/new-project/CreateProjectFormLayout';
 import { CreateProjectSteps } from '@/components/new-project/CreateProjectFormLayout/enums';
 import { CreateProjectFormProvider } from '@/components/new-project/CreateProjectFormProvider';
+import { NewAnalysis } from '@/components/new-project/NewAnalysis';
 import { NewProjectStep } from '@/components/new-project/NewProjectStep';
+import { Prioritization } from '@/components/new-project/Prioritization';
 import { Container } from '@chakra-ui/react';
 import { existsSync } from 'fs';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -18,6 +20,8 @@ export default function NewProjectPage() {
 						minH="640px"
 						steps={{
 							[CreateProjectSteps.ProjectDetails]: <NewProjectStep mt={12} />,
+							[CreateProjectSteps.NewAnalysis]: <NewAnalysis mt={12} />,
+							[CreateProjectSteps.Priorities]: <Prioritization mt={12} />,
 						}}
 					/>
 				</CreateProjectFormProvider>
