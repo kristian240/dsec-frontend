@@ -9,8 +9,8 @@ import path from 'path';
 import { useEffect, useState } from 'react';
 
 const githubLink = [
-	process.env.NEXT_PUBLIC_API_BASE_PATH || '',
-	'/api/api-proxy/api/oauth2/authorization/github?redirect_uri=https://',
+	process.env.NEXT_PUBLIC_API_BASE_PATH || '/api/api-proxy',
+	'/api/oauth2/authorization/github?redirect_uri=',
 	typeof window !== 'undefined' ? window.location.origin : null,
 	process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL,
 ].join('');
