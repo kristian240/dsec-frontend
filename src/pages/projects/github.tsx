@@ -7,6 +7,13 @@ import { existsSync } from 'fs';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import path from 'path';
 
+const githubLink = [
+	process.env.NEXT_PUBLIC_API_BASE_PATH || '',
+	'/api/api-proxy/api/oauth2/authorization/github?redirect_uri=https://',
+	process.env.VERCEL_URL,
+	process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL,
+].join('');
+
 export default function GithubPage() {
 	return (
 		<>
@@ -16,12 +23,7 @@ export default function GithubPage() {
 				navigation={<MainNavigation />}
 				containerProps={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
 			>
-				<Button
-					as="a"
-					colorScheme="primary"
-					leftIcon={<GithubIcon />}
-					href={`/api/api-proxy/api/oauth2/authorization/github?redirect_uri=https://${process.env.VERCEL_URL}${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
-				>
+				<Button as="a" colorScheme="primary" leftIcon={<GithubIcon />} href={githubLink}>
 					Integrate with Github
 				</Button>
 			</MainLayout>
