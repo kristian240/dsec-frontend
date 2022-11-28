@@ -20,7 +20,7 @@ export default function GithubPage() {
 					as="a"
 					colorScheme="primary"
 					leftIcon={<GithubIcon />}
-					href={`/api/api-proxy/api/oauth2/authorization/github?redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
+					href={`/api/api-proxy/api/oauth2/authorization/github?redirect_uri=https://${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
 				>
 					Integrate with Github
 				</Button>
