@@ -2,11 +2,13 @@ import { AuthRedirect } from '@/components/AuthRedirect/AuthRedirect';
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
 import { GithubIcon } from '@/icon/GithubIcon';
-import { Button } from '@chakra-ui/react';
+import { BASE_URL } from '@/utils/network';
+import { Button, Text } from '@chakra-ui/react';
 import { existsSync } from 'fs';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import path from 'path';
 import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
 const githubLink = [
 	process.env.NEXT_PUBLIC_API_BASE_PATH || '/api/api-proxy',
@@ -17,6 +19,9 @@ const githubLink = [
 
 export default function GithubPage() {
 	const [isClient, setIsClient] = useState(false);
+	const { data: token } = useSWR('/api/users/token', (url) =>
+		fetch(`${BASE_URL}${url}`, { credentials: 'include' }).then((res) => res.text())
+	);
 
 	useEffect(() => {
 		setIsClient(true);
@@ -35,6 +40,15 @@ export default function GithubPage() {
 		);
 	}
 
+	if (!token) {
+		<MainLayout
+			navigation={<MainNavigation />}
+			containerProps={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+		>
+			<Text>Something is wrong! Please logout and login.</Text>
+		</MainLayout>;
+	}
+
 	return (
 		<>
 			<AuthRedirect to="/login" />
@@ -43,7 +57,7 @@ export default function GithubPage() {
 				navigation={<MainNavigation />}
 				containerProps={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
 			>
-				<Button as="a" colorScheme="primary" leftIcon={<GithubIcon />} href={githubLink}>
+				<Button as="a" colorScheme="primary" leftIcon={<GithubIcon />} href={`${githubLink}&id_token=${token}`}>
 					Integrate with Github
 				</Button>
 			</MainLayout>
