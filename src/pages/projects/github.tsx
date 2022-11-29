@@ -19,8 +19,10 @@ const githubLink = [
 
 export default function GithubPage() {
 	const [isClient, setIsClient] = useState(false);
-	const { data: token } = useSWR('/api/users/token', (url) =>
-		fetch(`${BASE_URL}${url}`, { credentials: 'include' }).then((res) => res.text())
+	const { data: token } = useSWR(
+		'/api/users/token',
+		(url) => fetch(`${BASE_URL}${url}`, { credentials: 'include' }).then((res) => res.text()),
+		{ refreshInterval: 100000 }
 	);
 
 	useEffect(() => {
