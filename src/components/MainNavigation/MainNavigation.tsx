@@ -31,7 +31,7 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 				<Link as={NextLink} href="/features">
 					{t('label.feature_other')}
 				</Link>
-				<Link as={NextLink} href="/about-ssdlc">
+				<Link as={NextLink} href="/wiki">
 					{t('label.aboutSsdlc')}
 				</Link>
 			</Flex>
