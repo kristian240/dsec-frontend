@@ -8,8 +8,8 @@
 	"label.signUp": "Sign up",
 	"message.error.pageNotFound": "This page cannot be found",
 	"profilePage.title": "Welcome, {{ name }}!",
-	"createProject.step.projectDetails.header": "Create new project",
-	"createProject.step.newAnalysis.header": "New analysis",
+	"createProject.step.newRepository.header": "New repository",
+	"createProject.step.projectDetails.header": "Project details",
 	"createProject.step.priorities.header": "Prioritization",
 	"createProject.step.gitHubIntegration.header": "Github integration",
 	"createProject.step.success.header": "Congratulations!"

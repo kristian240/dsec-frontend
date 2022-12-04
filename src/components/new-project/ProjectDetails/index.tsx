@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 
-interface INewAnalysisProps {}
+interface IProjectDetailsProps {}
 
 function RadioCard(props: UseRadioProps & { children: ReactNode }) {
 	const { getInputProps, getCheckboxProps } = useRadio(props);
@@ -35,7 +35,7 @@ function RadioCard(props: UseRadioProps & { children: ReactNode }) {
 					color: 'white',
 					borderColor: '#4C4C4C',
 				}}
-				px={3}
+				px={6}
 				py={1}
 			>
 				{props.children}
@@ -64,7 +64,7 @@ function Selection(props) {
 	);
 }
 
-export const NewAnalysis: FC<StackProps> = (props) => {
+export const ProjectDetails: FC<StackProps> = (props) => {
 	const types = ['Website', 'Executable', 'Mobile', 'Other'];
 	const priorities = ['Finance', 'Social', 'Sport', 'E-commerce'];
 
@@ -77,7 +77,7 @@ export const NewAnalysis: FC<StackProps> = (props) => {
 			<Text>Express your priorities related to the following aspects.</Text>
 			<HStack>
 				<Text>Security</Text>
-				<Slider defaultValue={3} max={10}>
+				<Slider defaultValue={3} max={5}>
 					<SliderTrack boxSize={3} borderRadius={10} backgroundColor="#F5F5F5">
 						<SliderFilledTrack borderRadius={10} backgroundColor="#4C4C4C" />
 					</SliderTrack>
@@ -85,7 +85,7 @@ export const NewAnalysis: FC<StackProps> = (props) => {
 			</HStack>
 			<HStack>
 				<Text>Privacy </Text>
-				<Slider defaultValue={3} max={10}>
+				<Slider defaultValue={3} max={5}>
 					<SliderTrack boxSize={3} borderRadius={10} backgroundColor="#F5F5F5">
 						<SliderFilledTrack borderRadius={10} backgroundColor="#4C4C4C" />
 					</SliderTrack>

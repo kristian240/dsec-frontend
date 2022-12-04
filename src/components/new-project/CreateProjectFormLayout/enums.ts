@@ -1,14 +1,14 @@
 export enum CreateProjectSteps {
+	NewRepository = 'newRepository',
 	ProjectDetails = 'projectDetails',
-	NewAnalysis = 'newAnalysis',
 	Priorities = 'priorities',
 	GitHubIntegration = 'gitHubIntegration',
 	Success = 'success',
 }
 
 export const steps = [
+	CreateProjectSteps.NewRepository,
 	CreateProjectSteps.ProjectDetails,
-	CreateProjectSteps.NewAnalysis,
 	CreateProjectSteps.Priorities,
 	CreateProjectSteps.GitHubIntegration,
 ];
