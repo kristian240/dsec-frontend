@@ -7,5 +7,5 @@
 	"label.logIn": "Log in",
 	"label.signUp": "Sign up",
 	"message.error.pageNotFound": "This page cannot be found",
-	"profilePage.title": "Welcome, {{ name }}!"
+	"common.title": "Welcome, {{ name }}!"
 }
