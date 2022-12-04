@@ -42,20 +42,23 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 				</Link>
 
 				{data ? (
-					<Menu>
-						<MenuButton as={IconButton} variant="unstyled" icon={<ChevronCircleIcon boxSize={10} />} />
+					<>
+						<Link as={NextLink} href="/dashboard">
+							Dashboard
+						</Link>
 
-						<MenuList>
-							<MenuItem as={NextLink} href="/profile">
-								Profile
-							</MenuItem>
-							<MenuItem as={NextLink} href="/dashboard">
-								Dashboard
-							</MenuItem>
-							<MenuDivider />
-							<MenuItem onClick={handleLogout}>Log out</MenuItem>
-						</MenuList>
-					</Menu>
+						<Menu>
+							<MenuButton as={IconButton} variant="unstyled" icon={<ChevronCircleIcon boxSize={10} />} />
+
+							<MenuList>
+								<MenuItem as={NextLink} href="/profile">
+									Profile
+								</MenuItem>
+								<MenuDivider />
+								<MenuItem onClick={handleLogout}>Log out</MenuItem>
+							</MenuList>
+						</Menu>
+					</>
 				) : (
 					<>
 						<Link as={NextLink} href="/login">
