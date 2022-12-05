@@ -1,14 +1,14 @@
-import { CreateProjectSteps, steps } from '@/components/new-project/CreateProjectFormLayout/enums';
+import { CreateRepositorySteps, steps } from '@/components/new-repository/CreateRepositoryFormLayout/enums';
 import { ChevronIcon } from '@/icon/ChevronIcon';
 import { Box, BoxProps, Button, Center, Flex, Heading } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { FC, ReactNode, useState } from 'react';
 
-interface ICreateProjectFormLayoutProps extends BoxProps {
-	steps: Partial<Record<CreateProjectSteps, ReactNode>>;
+interface ICreateRepositoryFormLayoutProps extends BoxProps {
+	steps: Partial<Record<CreateRepositorySteps, ReactNode>>;
 }
 
-export const CreateProjectFormLayout: FC<ICreateProjectFormLayoutProps> = ({ steps: renderSteps, ...props }) => {
+export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = ({ steps: renderSteps, ...props }) => {
 	const { t } = useTranslation();
 	const [stepIndex, setStepIndex] = useState(() => 0);
 	const step = steps[stepIndex];
@@ -17,7 +17,7 @@ export const CreateProjectFormLayout: FC<ICreateProjectFormLayoutProps> = ({ ste
 		<Flex justify="space-between" direction="column" {...props}>
 			<Box>
 				<Heading as="h2" size="lg" mb={4} textAlign="center">
-					{t(`createProject.step.${step}.header`)}
+					{t(`createRepository.step.${step}.header`)}
 				</Heading>
 
 				{renderSteps[step]}

@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 
-interface IProjectDetailsProps {}
+interface IRepositoryDetailsProps {}
 
 function RadioCard(props: UseRadioProps & { children: ReactNode }) {
 	const { getInputProps, getCheckboxProps } = useRadio(props);
@@ -63,7 +63,7 @@ function Selection(props) {
 	);
 }
 
-export const ProjectDetails: FC<StackProps> = (props) => {
+export const RepositoryDetails: FC<StackProps> = (props) => {
 	const types = ['Website', 'Executable', 'Mobile', 'Other'];
 	const priorities = ['Finance', 'Social', 'Sport', 'E-commerce'];
 

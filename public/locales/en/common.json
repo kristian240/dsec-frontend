@@ -8,9 +8,9 @@
 	"label.signUp": "Sign up",
 	"message.error.pageNotFound": "This page cannot be found",
 	"profilePage.title": "Welcome, {{ name }}!",
-	"createProject.step.newRepository.header": "New repository",
-	"createProject.step.projectDetails.header": "Project details",
-	"createProject.step.priorities.header": "Prioritization",
-	"createProject.step.addTeam.header": "Add team",
-	"createProject.step.success.header": "Congratulations!"
+	"createRepository.step.newRepository.header": "New repository",
+	"createRepository.step.repositoryDetails.header": "Repository details",
+	"createRepository.step.priorities.header": "Prioritization",
+	"createRepository.step.addTeam.header": "Add team",
+	"createRepository.step.success.header": "Congratulations!"
 }
