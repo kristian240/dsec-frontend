@@ -27,14 +27,14 @@ export const Prioritization: FC<StackProps> = (props) => {
 				prioritization as needed.
 			</Text>
 			<Text as="b">Data security</Text>
-			<Slider colorScheme="blackAlpha" mt="10px" defaultValue={2} max={4}>
-				<SliderMark value={0} {...labelStyles}>
+			<Slider colorScheme="blackAlpha" mt="10px" defaultValue={2} min={1} max={5}>
+				<SliderMark value={1} {...labelStyles}>
 					low
 				</SliderMark>
-				<SliderMark value={2} {...labelStyles}>
+				<SliderMark value={3} {...labelStyles}>
 					medium
 				</SliderMark>
-				<SliderMark value={4} {...labelStyles}>
+				<SliderMark value={5} {...labelStyles}>
 					high
 				</SliderMark>
 				<SliderTrack boxSize={2.5} borderRadius={10} backgroundColor="#F5F5F5">
@@ -43,14 +43,14 @@ export const Prioritization: FC<StackProps> = (props) => {
 				<SliderThumb backgroundColor="black" />
 			</Slider>
 			<Text as="b">Service availability</Text>
-			<Slider colorScheme="blackAlpha" defaultValue={2} max={4}>
-				<SliderMark value={0} {...labelStyles}>
+			<Slider colorScheme="blackAlpha" defaultValue={2} min={1} max={5}>
+				<SliderMark value={1} {...labelStyles}>
 					low
 				</SliderMark>
-				<SliderMark value={2} {...labelStyles}>
+				<SliderMark value={3} {...labelStyles}>
 					medium
 				</SliderMark>
-				<SliderMark value={4} {...labelStyles}>
+				<SliderMark value={5} {...labelStyles}>
 					high
 				</SliderMark>
 				<SliderTrack boxSize={2.5} borderRadius={10} backgroundColor="#F5F5F5">
