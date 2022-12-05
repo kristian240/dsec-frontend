@@ -1,11 +1,12 @@
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
+import { AddTeam } from '@/components/new-project/AddTeam';
 import { CreateProjectFormLayout } from '@/components/new-project/CreateProjectFormLayout';
 import { CreateProjectSteps } from '@/components/new-project/CreateProjectFormLayout/enums';
 import { CreateProjectFormProvider } from '@/components/new-project/CreateProjectFormProvider';
-import { ProjectDetails } from '@/components/new-project/ProjectDetails';
 import { NewRepository } from '@/components/new-project/NewRepository';
 import { Prioritization } from '@/components/new-project/Prioritization';
+import { ProjectDetails } from '@/components/new-project/ProjectDetails';
 import { Container } from '@chakra-ui/react';
 import { existsSync } from 'fs';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -22,6 +23,7 @@ export default function NewProjectPage() {
 							[CreateProjectSteps.NewRepository]: <NewRepository mt={12} />,
 							[CreateProjectSteps.ProjectDetails]: <ProjectDetails mt={12} />,
 							[CreateProjectSteps.Priorities]: <Prioritization mt={12} />,
+							[CreateProjectSteps.AddTeam]: <AddTeam mt={12} />,
 						}}
 					/>
 				</CreateProjectFormProvider>

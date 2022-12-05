@@ -11,6 +11,6 @@
 	"createProject.step.newRepository.header": "New repository",
 	"createProject.step.projectDetails.header": "Project details",
 	"createProject.step.priorities.header": "Prioritization",
-	"createProject.step.gitHubIntegration.header": "Github integration",
+	"createProject.step.addTeam.header": "Add team",
 	"createProject.step.success.header": "Congratulations!"
 }
