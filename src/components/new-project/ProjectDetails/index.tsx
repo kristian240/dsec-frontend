@@ -2,14 +2,13 @@ import {
 	Box,
 	Container,
 	HStack,
-	Slider,
-	SliderFilledTrack,
-	SliderTrack,
+	Radio,
+	RadioGroup,
 	Stack,
 	StackProps,
+	Text,
 	useRadio,
 	useRadioGroup,
-	Text,
 	UseRadioProps,
 } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
@@ -74,23 +73,14 @@ export const ProjectDetails: FC<StackProps> = (props) => {
 			<Selection {...types}></Selection>
 			<Text>Select the domain of your project.</Text>
 			<Selection {...priorities}></Selection>
-			<Text>Express your priorities related to the following aspects.</Text>
-			<HStack>
-				<Text>Security</Text>
-				<Slider defaultValue={3} max={5}>
-					<SliderTrack boxSize={3} borderRadius={10} backgroundColor="#F5F5F5">
-						<SliderFilledTrack borderRadius={10} backgroundColor="#4C4C4C" />
-					</SliderTrack>
-				</Slider>
-			</HStack>
-			<HStack>
-				<Text>Privacy </Text>
-				<Slider defaultValue={3} max={5}>
-					<SliderTrack boxSize={3} borderRadius={10} backgroundColor="#F5F5F5">
-						<SliderFilledTrack borderRadius={10} backgroundColor="#4C4C4C" />
-					</SliderTrack>
-				</Slider>
-			</HStack>
+			<RadioGroup>
+				<Text as="b">Do you store any user data?</Text>
+				<Stack>
+					<Radio value="1">Yes, we store personal data such as emails.</Radio>
+					<Radio value="2">Yes, but meta data only.</Radio>
+					<Radio value="3">No</Radio>
+				</Stack>
+			</RadioGroup>
 		</Container>
 	);
 };
