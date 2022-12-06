@@ -23,8 +23,8 @@ export const NewRepository: FC<StackProps> = (props) => {
 				</Select>
 			</FormControl>
 			<FormControl>
-				<FormLabel>Project name</FormLabel>
-				<Input placeholder="Project name" {...register('a')} />
+				<FormLabel>Name</FormLabel>
+				<Input placeholder="Name" {...register('a')} />
 			</FormControl>
 			<FormControl>
 				<FormLabel>Description</FormLabel>

@@ -21,8 +21,8 @@ export const Prioritization: FC<StackProps> = (props) => {
 	};
 	return (
 		<Container as={Stack} spacing={8} {...props}>
-			<Text>
-				In this step we ask you to prioritize what security aspects are important for your project. This allows us to
+			<Text align="center">
+				In this step we ask you to prioritize what security aspects are important for your repository. This allows us to
 				create a tailored pipeline according to your needs. You can of course adjust the pipeline or change
 				prioritization as needed.
 			</Text>
