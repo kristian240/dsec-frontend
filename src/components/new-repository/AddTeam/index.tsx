@@ -1,4 +1,15 @@
-import { Button, Container, FormControl, FormLabel, Select, Stack, StackProps, Text } from '@chakra-ui/react';
+import {
+	Alert,
+	AlertIcon,
+	Button,
+	Container,
+	FormControl,
+	FormLabel,
+	Select,
+	Stack,
+	StackProps,
+	Text,
+} from '@chakra-ui/react';
 import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -14,8 +25,8 @@ export const AddTeam: FC<StackProps> = (props) => {
 
 	return (
 		<Container as={Stack} spacing={8} {...props}>
-			<Text>
-				By adding a team to your repository, your colleagues will also be able to view the results of analysis
+			<Text align="center">
+				By adding a team to your repository, your colleagues will also be able to view the results of analysis.
 			</Text>
 			<FormControl>
 				<FormLabel>Select team</FormLabel>
@@ -26,9 +37,12 @@ export const AddTeam: FC<StackProps> = (props) => {
 				</Select>
 			</FormControl>
 			<Button>Create team</Button>
-			<Text as="b" color="red" fontSize="20px">
-				This feature is currently unavailable. Please, click on Finish to create your project.
-			</Text>
+			<Alert status="warning">
+				<AlertIcon />
+				<Text>
+					This feature is currently unavailable. Please, click on <b>Finish</b> to create your repository.
+				</Text>
+			</Alert>
 		</Container>
 	);
 };
