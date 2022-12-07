@@ -53,7 +53,7 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 								Dashboard
 							</MenuItem>
 
-							<MenuItem as={NextLink} href="/projects/github">
+							<MenuItem as={NextLink} href="/repos/github">
 								{t('label.github')}
 							</MenuItem>
 							<MenuDivider />
