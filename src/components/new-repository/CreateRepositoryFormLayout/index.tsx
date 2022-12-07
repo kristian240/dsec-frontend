@@ -2,6 +2,7 @@ import { CreateRepositorySteps, steps } from '@/components/new-repository/Create
 import { ChevronIcon } from '@/icon/ChevronIcon';
 import { Box, BoxProps, Button, Center, Flex, Heading } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
+import NextLink from 'next/link';
 import { FC, ReactNode, useState } from 'react';
 
 interface ICreateRepositoryFormLayoutProps extends BoxProps {
@@ -39,16 +40,27 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 					</Box>
 
 					<Box>
-						{stepIndex < steps.length ? (
+						{stepIndex < steps.length - 1 ? (
 							<Button
 								onClick={() => setStepIndex((p) => p + 1)}
 								rightIcon={<ChevronIcon transform="rotate(-180deg)" />}
 								variant="link"
 								colorScheme="primary"
 							>
-								{stepIndex === steps.length - 1 ? 'Finish' : 'Next'}
+								Next
 							</Button>
-						) : null}
+						) : (
+							<Button
+								//DODATI onClick={} stvoriti novi repozitorij sa svim odabranim podatcima
+								as={NextLink}
+								href="/dashboard"
+								rightIcon={<ChevronIcon transform="rotate(-180deg)" />}
+								variant="link"
+								colorScheme="primary"
+							>
+								Finish
+							</Button>
+						)}
 					</Box>
 				</Flex>
 
