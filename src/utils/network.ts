@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_PATH || 'http://localhost:3000/api/api-proxy';
+export const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_PATH || 'http://localhost:3000/api/api-proxy';
 
 const defaultHeaders = {
 	'Content-Type': 'application/json',

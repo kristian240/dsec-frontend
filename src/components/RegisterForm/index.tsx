@@ -8,7 +8,8 @@ export default function RegisterForm() {
 	const {
 		handleSubmit,
 		register,
-		formState: { errors },
+		formState: { errors, isSubmitting },
+		setError,
 	} = useForm<RegisterFormValues>({
 		criteriaMode: 'all',
 		mode: 'onBlur',
@@ -27,7 +28,13 @@ export default function RegisterForm() {
 			router.push('/login');
 		},
 		onFailure: ({ error }) => {
-			toast({ title: 'Ops! Something went wrong', status: 'error', description: error?.message });
+			if ('fieldErrors' in error) {
+				(error.fieldErrors as Array<{ fieldValue: string; message: string }>).forEach((fieldError) => {
+					setError(`register-${fieldError.fieldValue}` as RegisterFields, { message: fieldError.message });
+				});
+			} else {
+				toast({ title: 'Ops! Something went wrong', status: 'error', description: error?.message });
+			}
 		},
 	});
 
@@ -122,7 +129,7 @@ export default function RegisterForm() {
 					<FormErrorMessage>{errors[RegisterFields.PASSWORD_REPEAT]?.message}</FormErrorMessage>
 				</FormControl>
 
-				<Button type="submit" colorScheme="blue">
+				<Button type="submit" colorScheme="blue" isLoading={isSubmitting} isDisabled={isSubmitting}>
 					Sign up
 				</Button>
 
