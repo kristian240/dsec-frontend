@@ -5,7 +5,7 @@ import { Box, BoxProps, Button, Center, Flex, Heading } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { FC, ReactNode, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import useMutation from 'use-mutation';
 import { createRepo, RepoFormValues } from './utils';
 
@@ -18,7 +18,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 	const [stepIndex, setStepIndex] = useState(() => 0);
 	const step = steps[stepIndex];
 	const router = useRouter();
-	const { handleSubmit } = useForm<RepoFormValues>();
+	const { handleSubmit } = useFormContext<RepoFormValues>();
 
 	const [onSubmit] = useMutation(createRepo, {
 		onSuccess: () => {

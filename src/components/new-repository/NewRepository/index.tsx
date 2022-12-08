@@ -26,9 +26,9 @@ export const NewRepository: FC<StackProps> = (props) => {
 			<Container as={Stack} spacing={8} {...props}>
 				<FormControl>
 					<FormLabel>Select repository</FormLabel>
-					<Select>
+					<Select {...register(RepoFields.REPO)}>
 						{repos.map((repo) => (
-							<option key={repo.id} value={repo.name} {...register(RepoFields.REPO)}>
+							<option key={repo.id} value={repo.name}>
 								{repo.full_name}
 							</option>
 						))}
