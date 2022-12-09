@@ -25,6 +25,6 @@ export async function createRepo(formData: RepoFormValues) {
 	let user = '';
 	await get('/api/github/user').then((resp) => {
 		user = resp.login;
+		return post(`/api/repo/${user}/${requestBody.repo}`);
 	});
-	return post(`/api/repo/${user}/${requestBody.repo}`);
 }

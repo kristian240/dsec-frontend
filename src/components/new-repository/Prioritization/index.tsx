@@ -13,12 +13,13 @@ import { FC } from 'react';
 
 interface IPrioritizationProps {}
 
+const labelStyles = {
+	mt: '2',
+	ml: '-2.5',
+	fontSize: 'sm',
+};
+
 export const Prioritization: FC<StackProps> = (props) => {
-	const labelStyles = {
-		mt: '2',
-		ml: '-2.5',
-		fontSize: 'sm',
-	};
 	return (
 		<Container as={Stack} spacing={8} {...props}>
 			<Text align="center">

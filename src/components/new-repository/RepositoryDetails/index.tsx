@@ -46,7 +46,6 @@ function RadioCard(props: UseRadioProps & { children: ReactNode }) {
 function Selection(props) {
 	const options = Object.values(props);
 	const { getRootProps, getRadioProps } = useRadioGroup();
-
 	const group = getRootProps();
 
 	return (
@@ -63,10 +62,9 @@ function Selection(props) {
 	);
 }
 
+const types = ['Website', 'Executable', 'Mobile', 'Other'];
+const priorities = ['Finance', 'Social', 'Sport', 'E-commerce'];
 export const RepositoryDetails: FC<StackProps> = (props) => {
-	const types = ['Website', 'Executable', 'Mobile', 'Other'];
-	const priorities = ['Finance', 'Social', 'Sport', 'E-commerce'];
-
 	return (
 		<Container as={Stack} spacing={5} {...props}>
 			<Text align="center">
