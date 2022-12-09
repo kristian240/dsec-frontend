@@ -1,4 +1,15 @@
-import { Container, FormControl, FormLabel, Input, Select, Stack, StackProps, Textarea } from '@chakra-ui/react';
+import {
+	Center,
+	Container,
+	FormControl,
+	FormLabel,
+	Input,
+	Select,
+	Spinner,
+	Stack,
+	StackProps,
+	Textarea,
+} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -18,7 +29,11 @@ export const NewRepository: FC<StackProps> = (props) => {
 		},
 	});
 	if (!repos) {
-		return null;
+		return (
+			<Center>
+				<Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
+			</Center>
+		);
 	}
 
 	return (
