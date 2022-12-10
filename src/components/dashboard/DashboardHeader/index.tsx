@@ -1,14 +1,19 @@
 import { useUser } from '@/hooks/useUser';
-import { Box, BoxProps, Heading, HeadingProps } from '@chakra-ui/react';
+import { Box, BoxProps, Heading, Skeleton } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 export const DashboardHeader: FC<BoxProps> = (props) => {
 	const { t } = useTranslation('common');
 	const { data } = useUser();
 
 	if (!data) {
-		return null;
+		return (
+			<Box {...props}>
+				<Skeleton h={12} w="50%" borderRadius="lg" />
+				<Skeleton h={9} mt={6} w="40%" borderRadius="lg" />
+			</Box>
+		);
 	}
 
 	return (

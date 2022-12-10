@@ -8,6 +8,7 @@ const themeOverrides = {
 	},
 	colors: {
 		primary: {
+			50: '#F5F5F5',
 			100: '#D0D0D0',
 			200: '#A2A2A2',
 			300: '#737373',

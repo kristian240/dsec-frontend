@@ -15,5 +15,6 @@
 	"createRepository.step.repositoryDetails.header": "Repository details",
 	"createRepository.step.priorities.header": "Prioritization",
 	"createRepository.step.addTeam.header": "Add team",
-	"createRepository.step.success.header": "Congratulations!"
+	"createRepository.step.success.header": "Congratulations!",
+	"dashboard.lastAnalysis": "Last analysis"
 }
