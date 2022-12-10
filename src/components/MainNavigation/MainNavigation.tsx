@@ -48,11 +48,13 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 						</Link>
 
 						<Menu>
-							<MenuButton as={IconButton} variant="unstyled" icon={<ChevronCircleIcon boxSize={10} />} />
-
 							<MenuList>
 								<MenuItem as={NextLink} href="/profile">
 									Profile
+								</MenuItem>
+
+								<MenuItem as={NextLink} href="/repos/github">
+									{t('label.github')}
 								</MenuItem>
 								<MenuDivider />
 								<MenuItem onClick={handleLogout}>Log out</MenuItem>

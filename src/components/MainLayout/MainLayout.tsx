@@ -1,13 +1,14 @@
 import { LogoSvg } from '@/icon/Logo';
-import { Box, Container, Flex, FlexProps, Link } from '@chakra-ui/react';
+import { Box, BoxProps, Container, Flex, FlexProps, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import React, { FC } from 'react';
 
 interface IMainLayoutProps extends FlexProps {
 	navigation?: React.ReactNode;
+	containerProps?: BoxProps;
 }
 
-export const MainLayout: FC<IMainLayoutProps> = ({ navigation, children, ...rest }) => {
+export const MainLayout: FC<IMainLayoutProps> = ({ navigation, children, containerProps, ...rest }) => {
 	return (
 		<Flex direction="column" minH="100vh">
 			<Container as="header" maxW="container.lg">
@@ -20,7 +21,7 @@ export const MainLayout: FC<IMainLayoutProps> = ({ navigation, children, ...rest
 				</Flex>
 			</Container>
 
-			<Box flex={1} as="main">
+			<Box flex={1} as="main" {...containerProps}>
 				{children}
 			</Box>
 		</Flex>
