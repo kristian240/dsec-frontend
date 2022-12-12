@@ -1,6 +1,6 @@
 import { DashboardRepoListFallback } from '@/components/dashboard/DashboardRepoList/fallback';
 import { useUserRepos } from '@/hooks/useUserRepos';
-import { Center, Flex, Grid, GridProps, Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
+import { Grid, GridProps, Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -28,30 +28,31 @@ export const DashboardRepoList: FC<GridProps> = (props) => {
 	}
 
 	return (
-		<Grid templateAutoRows="1fr" templateColumns="repeat(4, 1fr)" gap={12} {...props}>
+		<Grid autoRows="1fr" templateColumns="repeat(4, 1fr)" gap={12} {...props}>
 			{repos.map((repo) => (
-				<LinkBox key={repo.id} as="article" gap={3} flexDirection="column" display="flex">
-					<Center p={5} bgColor="primary.50" borderRadius="lg" textAlign="center" flex={1}>
-						{/* <Text fontWeight="medium">{t('dashboard.lastAnalysis')}</Text> */}
+				<LinkBox
+					key={repo.id}
+					as="article"
+					gap={1}
+					flexDirection="column"
+					display="flex"
+					p={5}
+					bgColor="primary.50"
+					borderRadius="lg"
+					textAlign="center"
+					flexDir="column"
+					justifyContent="center"
+				>
+					<Text>Repo</Text>
 
-						<Flex direction="column" gap={1}>
-							<Text>Repo</Text>
-
-							<Heading as="h3" size="sm">
-								<LinkOverlay as={NextLink} href={`/repos/${repo.id}`}>
-									{repo.fullName}
-								</LinkOverlay>
-							</Heading>
-
-							<Text fontSize="xs">&#x23;{repo.id}</Text>
-						</Flex>
-					</Center>
-
-					{/* <Heading as="h3" size="xs">
+					<Heading as="h3" size="sm" noOfLines={1} wordBreak="break-all">
 						<LinkOverlay as={NextLink} href={`/repos/${repo.id}`}>
-							{repo.fullName}
+							{repo.fullName.split('/')[1]}
 						</LinkOverlay>
-					</Heading> */}
+					</Heading>
+
+					<Text fontSize="md">{repo.fullName.split('/')[0]}</Text>
+					<Text fontSize="xs">&#x23;{repo.id}</Text>
 				</LinkBox>
 			))}
 		</Grid>
