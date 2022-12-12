@@ -7,7 +7,8 @@ export enum RepoFields {
 	TYPE = 'repo-type',
 	DOMAIN = 'repo-domain',
 	USER_DATA = 'repo-user-data',
-	PRIORITIZATION = 'repo-prioritization',
+	AVAILABILITY = 'repo-availability',
+	SECURITY = 'repo-security',
 }
 
 export type RepoFormValues = Record<RepoFields, unknown>;
@@ -16,12 +17,11 @@ export async function createRepo(formData: RepoFormValues) {
 	const requestBody = {
 		repoName: formData[RepoFields.REPO],
 		description: formData[RepoFields.DESCRIPTION],
-		type: formData[RepoFields.TYPE],
-		domain: formData[RepoFields.DOMAIN],
-		userdata: formData[RepoFields.USER_DATA],
-		prioritization: formData[RepoFields.PRIORITIZATION],
-		security: formData[RepoFields.PRIORITIZATION],
-		availability: formData[RepoFields.PRIORITIZATION],
+		type: (formData[RepoFields.TYPE] as string).toUpperCase(),
+		domain: (formData[RepoFields.DOMAIN] as string).toUpperCase(),
+		userData: false,
+		security: formData[RepoFields.SECURITY],
+		availability: formData[RepoFields.AVAILABILITY],
 	};
 
 	return post(`/api/repo/${requestBody.repoName}`, requestBody);
