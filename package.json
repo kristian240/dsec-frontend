@@ -27,6 +27,7 @@
 	},
 	"homepage": "https://github.com/DSD-DSec/frontend#readme",
 	"dependencies": {
+		"@chakra-ui/icons": "^2.0.13",
 		"@chakra-ui/react": "^2.3.6",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
