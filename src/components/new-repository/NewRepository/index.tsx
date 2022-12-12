@@ -3,6 +3,7 @@ import {
 	Container,
 	FormControl,
 	FormLabel,
+	Input,
 	Select,
 	Spinner,
 	Stack,
@@ -45,6 +46,10 @@ export const NewRepository: FC<StackProps> = (props) => {
 							</option>
 						))}
 					</Select>
+				</FormControl>
+				<FormControl>
+					<FormLabel>Name</FormLabel>
+					<Input placeholder="Name" {...register(RepoFields.NAME)} />
 				</FormControl>
 				<FormControl>
 					<FormLabel>Description</FormLabel>

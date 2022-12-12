@@ -15,7 +15,7 @@ export type RepoFormValues = Record<RepoFields, unknown>;
 
 export async function createRepo(formData: RepoFormValues) {
 	const requestBody = {
-		repoName: formData[RepoFields.REPO],
+		repoName: formData[RepoFields.NAME],
 		description: formData[RepoFields.DESCRIPTION],
 		type: (formData[RepoFields.TYPE] as string).toUpperCase(),
 		domain: (formData[RepoFields.DOMAIN] as string).toUpperCase(),
@@ -24,5 +24,5 @@ export async function createRepo(formData: RepoFormValues) {
 		availability: formData[RepoFields.AVAILABILITY],
 	};
 
-	return post(`/api/repo/${requestBody.repoName}`, requestBody);
+	return post(`/api/repo/${formData[RepoFields.REPO]}`, requestBody);
 }
