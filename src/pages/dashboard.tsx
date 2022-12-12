@@ -1,5 +1,5 @@
 import { AuthRedirect } from '@/components/AuthRedirect/AuthRedirect';
-import { AddAnalysis } from '@/components/dashboard/AddAnalysis';
+import { AddRepo } from '@/components/dashboard/AddRepo';
 import { DashboardHeader } from '@/components/dashboard/DashboardHeader';
 import { DashboardRepoList } from '@/components/dashboard/DashboardRepoList';
 import { MainLayout } from '@/components/MainLayout/MainLayout';
@@ -21,7 +21,7 @@ const ProfilePage: NextPage<ProfilePageProps> = () => {
 				<DashboardRepoList minH="160px" mb={16} />
 
 				<Flex justify="center">
-					<AddAnalysis />
+					<AddRepo />
 				</Flex>
 			</Container>
 		</MainLayout>
