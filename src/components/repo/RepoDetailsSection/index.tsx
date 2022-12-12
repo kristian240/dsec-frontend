@@ -1,9 +1,7 @@
-import { post } from '@/utils/network';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
 	Box,
 	BoxProps,
-	Button,
 	Center,
 	Flex,
 	Heading,
@@ -15,9 +13,8 @@ import {
 	Text,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React, { FC, useMemo } from 'react';
+import { FC } from 'react';
 import useSWR from 'swr';
-import useMutation from 'use-mutation';
 
 interface IRepoDetailsSectionProps extends BoxProps {
 	repoId: string;
@@ -25,11 +22,8 @@ interface IRepoDetailsSectionProps extends BoxProps {
 
 export const RepoDetailsSection: FC<IRepoDetailsSectionProps> = ({ repoId, ...rest }) => {
 	const { data, error } = useSWR(repoId ? `/api/repo/${repoId}` : null);
-	// const repoJobs = useMemo(() => data?.filter((job) => String(job.repo.id) === repoId), [data, repoId]);
 
-	const [startAnalysis] = useMutation(() => post(`/api/repo/trigger/${repoId}`));
-
-	if (error?.status === 404) {
+	if (error) {
 		return (
 			<Flex direction="column" align="center" gap={4} {...rest}>
 				<Text fontSize="xl">
