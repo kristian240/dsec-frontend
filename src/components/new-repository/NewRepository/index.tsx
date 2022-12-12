@@ -3,7 +3,6 @@ import {
 	Container,
 	FormControl,
 	FormLabel,
-	Input,
 	Select,
 	Spinner,
 	Stack,
@@ -15,8 +14,6 @@ import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 import useSWR from 'swr';
 import { RepoFields, RepoFormValues } from '../CreateRepositoryFormLayout/utils';
-
-interface INewRepositoryProps {}
 
 export const NewRepository: FC<StackProps> = (props) => {
 	const { register } = useFormContext<RepoFormValues>();
@@ -44,14 +41,10 @@ export const NewRepository: FC<StackProps> = (props) => {
 					<Select {...register(RepoFields.REPO)}>
 						{repos.map((repo) => (
 							<option key={repo.id} value={repo.name}>
-								{repo.full_name}
+								{repo.fullName}
 							</option>
 						))}
 					</Select>
-				</FormControl>
-				<FormControl>
-					<FormLabel>Name</FormLabel>
-					<Input placeholder="Name" {...register(RepoFields.NAME)} />
 				</FormControl>
 				<FormControl>
 					<FormLabel>Description</FormLabel>
