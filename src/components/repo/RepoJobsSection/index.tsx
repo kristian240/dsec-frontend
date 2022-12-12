@@ -55,10 +55,16 @@ interface IRepoJobsSectionProps extends BoxProps {
 
 export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) => {
 	const { data, error } = useSWR<Array<IJob>>(repoId ? `/api/job` : null);
-	// const { data: repoJobs, error } = useSWR<Array<IJob>>(repoId ? `/api/repo/${repoId}/jobs` : null);
 	const repoJobs = useMemo(
 		() => data?.filter((job) => String(job.repo.id) === repoId).sort((a, b) => a.startTime.localeCompare(b.startTime)),
 		[data, repoId]
+	);
+
+	const { data: repo } = useSWR(repoId ? `/api/repo/${repoId}` : null);
+	const { data: mainBranch } = useSWR<IRepo>(repo ? repo.url : null, (url: string) =>
+		fetch(url)
+			.then((res) => res.json())
+			.then((res) => res.default_branch)
 	);
 
 	const [startAnalysis] = useMutation(() => post(`/api/repo/trigger/${repoId}`));
@@ -128,7 +134,7 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 															rightIcon={<ExternalLinkIcon />}
 															variant="link"
 															color="primary.500"
-															href={`${job.repo.htmlUrl}/blob/main/${parsedFile}#L${log.startLine}-L${log.endLine}`}
+															href={`${job.repo.htmlUrl}/blob/${mainBranch}/${parsedFile}#L${log.startLine}-L${log.endLine}`}
 															isExternal
 														>
 															{parsedFile}
