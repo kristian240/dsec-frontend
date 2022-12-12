@@ -1,6 +1,6 @@
 import { IRepo } from '@/interfaces/api/IRepo';
 import { post } from '@/utils/network';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { AddIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import {
 	Accordion,
 	AccordionButton,
@@ -54,7 +54,11 @@ interface IRepoJobsSectionProps extends BoxProps {
 }
 
 export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) => {
-	const { data, error } = useSWR<Array<IJob>>(repoId ? `/api/job` : null);
+	const {
+		data,
+		error,
+		mutate: mutateJobs,
+	} = useSWR<Array<IJob>>(repoId ? `/api/job` : null, { refreshInterval: 1000 });
 	const repoJobs = useMemo(
 		() => data?.filter((job) => String(job.repo.id) === repoId).sort((a, b) => a.startTime.localeCompare(b.startTime)),
 		[data, repoId]
@@ -67,7 +71,11 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 			.then((res) => res.default_branch)
 	);
 
-	const [startAnalysis] = useMutation(() => post(`/api/repo/trigger/${repoId}`));
+	const [startAnalysis, { status }] = useMutation(() => post(`/api/repo/trigger/${repoId}`), {
+		onSuccess: () => {
+			mutateJobs();
+		},
+	});
 
 	if (error) {
 		return (
@@ -104,9 +112,22 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 
 	return (
 		<Box>
-			<Heading size="lg" mb={2}>
-				Jobs
-			</Heading>
+			<Flex justify="space-between" py={1}>
+				<Heading size="lg" mb={2}>
+					Jobs
+				</Heading>
+
+				<Button
+					variant="link"
+					onClick={startAnalysis}
+					isLoading={status === 'running'}
+					size="xl"
+					colorScheme="primary"
+					rightIcon={<AddIcon />}
+				>
+					Start analysis
+				</Button>
+			</Flex>
 
 			<Accordion allowToggle>
 				{repoJobs.map((job, index, self) => {
