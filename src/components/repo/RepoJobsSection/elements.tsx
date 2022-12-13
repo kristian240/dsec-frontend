@@ -1,5 +1,5 @@
-import { CheckIcon } from '@chakra-ui/icons';
-import { AlertIcon, Spinner, Tag, TagLabel, TagLeftIcon, TagProps } from '@chakra-ui/react';
+import { CheckIcon, WarningTwoIcon } from '@chakra-ui/icons';
+import { Spinner, Tag, TagLabel, TagLeftIcon, TagProps } from '@chakra-ui/react';
 import { FC, useEffect, useReducer } from 'react';
 import { format } from 'timeago.js';
 
@@ -43,8 +43,8 @@ export const CompliantBadge: FC<ICompliantBadgeProps> = ({ log, ...rest }) => {
 	}
 
 	return (
-		<Tag colorScheme="yellow" {...rest}>
-			<TagLeftIcon as={AlertIcon} />
+		<Tag colorScheme="red" {...rest}>
+			<TagLeftIcon as={WarningTwoIcon} />
 			<TagLabel>Not Compliant</TagLabel>
 		</Tag>
 	);
