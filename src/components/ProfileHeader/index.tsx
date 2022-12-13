@@ -13,7 +13,7 @@ export const ProfileHeader: FC<HeadingProps> = (props) => {
 
 	return (
 		<Heading as="h2" textAlign="center" {...props}>
-			{t('profilePage.title', { name: data?.firstName })}
+			{t('common.title', { name: data?.firstName })}
 		</Heading>
 	);
 };

@@ -1,4 +1,4 @@
-import { get, post } from '@/utils/network';
+import { post } from '@/utils/network';
 
 export enum RepoFields {
 	REPO = 'repo-select',
@@ -7,24 +7,22 @@ export enum RepoFields {
 	TYPE = 'repo-type',
 	DOMAIN = 'repo-domain',
 	USER_DATA = 'repo-user-data',
-	PRIORITIZATION = 'repo-prioritization',
+	AVAILABILITY = 'repo-availability',
+	SECURITY = 'repo-security',
 }
 
 export type RepoFormValues = Record<RepoFields, unknown>;
 
 export async function createRepo(formData: RepoFormValues) {
 	const requestBody = {
-		repo: formData[RepoFields.REPO],
-		name: formData[RepoFields.NAME],
+		repoName: formData[RepoFields.NAME],
 		description: formData[RepoFields.DESCRIPTION],
-		type: formData[RepoFields.TYPE],
-		domain: formData[RepoFields.DOMAIN],
-		userdata: formData[RepoFields.USER_DATA],
-		prioritization: formData[RepoFields.PRIORITIZATION],
+		type: (formData[RepoFields.TYPE] as string).toUpperCase(),
+		domain: (formData[RepoFields.DOMAIN] as string).toUpperCase(),
+		userData: parseInt(formData[RepoFields.USER_DATA] as string, 10) > 0,
+		security: formData[RepoFields.SECURITY],
+		availability: formData[RepoFields.AVAILABILITY],
 	};
-	let user = '';
-	await get('/api/github/user').then((resp) => {
-		user = resp.login;
-		return post(`/api/repo/${user}/${requestBody.repo}`);
-	});
+
+	return post(`/api/repo/${formData[RepoFields.REPO]}`, requestBody);
 }

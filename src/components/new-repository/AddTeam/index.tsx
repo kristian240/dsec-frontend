@@ -11,18 +11,14 @@ import {
 	Text,
 } from '@chakra-ui/react';
 import { FC } from 'react';
-import { useFormContext } from 'react-hook-form';
 
-interface IAddTeamProps {}
+const options = [
+	{ value: 'team1', label: 'Team 1' },
+	{ value: 'team2', label: 'Team 2' },
+	{ value: 'team3', label: 'Team 3' },
+];
 
 export const AddTeam: FC<StackProps> = (props) => {
-	const { register } = useFormContext();
-	const options = [
-		{ value: 'team1', label: 'Team 1' },
-		{ value: 'team2', label: 'Team 2' },
-		{ value: 'team3', label: 'Team 3' },
-	];
-
 	return (
 		<Container as={Stack} spacing={8} {...props}>
 			<Text align="center">
