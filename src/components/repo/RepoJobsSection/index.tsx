@@ -1,13 +1,14 @@
+import { CompliantBadge } from '@/components/repo/RepoJobsSection/CompliantBadge';
+import { TimeAgo } from '@/components/repo/RepoJobsSection/elements';
 import { IRepo } from '@/interfaces/api/IRepo';
 import { post } from '@/utils/network';
-import { AddIcon, CheckIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { AddIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import {
 	Accordion,
 	AccordionButton,
 	AccordionIcon,
 	AccordionItem,
 	AccordionPanel,
-	AlertIcon,
 	Box,
 	BoxProps,
 	Button,
@@ -20,17 +21,15 @@ import {
 	VStack,
 } from '@chakra-ui/react';
 import utcToZonedTime from 'date-fns-tz/utcToZonedTime';
-import NextLink from 'next/link';
 import { FC, useMemo } from 'react';
 import useSWR from 'swr';
-import { format } from 'timeago.js';
 import useMutation from 'use-mutation';
 
 interface IJob {
 	id: number;
 	startTime: string;
-	endTime: string;
-	log: Array<{
+	endTime?: string;
+	log?: Array<{
 		author: string;
 		commit: string;
 		date: string;
@@ -140,12 +139,23 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 					return (
 						<AccordionItem key={job.id}>
 							<AccordionButton>
-								{job.log.length > 0 ? <AlertIcon color="red.400" /> : <CheckIcon color="green.500" />}
-								<Box as="span" flex="1" textAlign="left" m={2}>
-									Job #{self.length - index}
+								<Box flex={1} m={2} textAlign="left">
+									<Box as="span" mr={2}>
+										Job #{self.length - index}
+									</Box>
+
+									<CompliantBadge log={job.log} />
 								</Box>
 
-								<Box as="span">{format(utcToZonedTime(new Date(job.endTime), 'UTC'))}</Box>
+								{job.endTime ? (
+									<Box as="span">
+										Ended <TimeAgo date={utcToZonedTime(new Date(job.endTime), 'UTC')} />
+									</Box>
+								) : (
+									<Box as="span">
+										Started <TimeAgo date={utcToZonedTime(new Date(job.startTime), 'UTC')} />
+									</Box>
+								)}
 								<AccordionIcon />
 							</AccordionButton>
 
