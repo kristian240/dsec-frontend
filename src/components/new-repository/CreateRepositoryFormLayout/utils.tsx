@@ -18,7 +18,7 @@ export async function createRepo(formData: RepoFormValues) {
 		repoName: formData[RepoFields.NAME],
 		description: formData[RepoFields.DESCRIPTION],
 		type: (formData[RepoFields.TYPE] as string).toUpperCase(),
-		domain: (formData[RepoFields.DOMAIN] as string).toUpperCase(),
+		domain: (formData[RepoFields.DOMAIN] as string).toUpperCase().replace('-', ''),
 		userData: parseInt(formData[RepoFields.USER_DATA] as string, 10) > 0,
 		security: formData[RepoFields.SECURITY],
 		availability: formData[RepoFields.AVAILABILITY],
