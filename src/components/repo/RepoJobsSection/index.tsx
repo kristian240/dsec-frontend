@@ -66,16 +66,6 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 		[data, repoId]
 	);
 
-	const { data: repo } = useSWR(repoId ? `/api/repo/${repoId}` : null);
-	const { data: mainBranch } = useSWR<IRepo>(
-		repo ? repo.url : null,
-		(url: string) =>
-			fetch(url)
-				.then((res) => res.json())
-				.then((res) => res.default_branch),
-		{ revalidateIfStale: false, revalidateOnFocus: false }
-	);
-
 	const [startAnalysis, { status }] = useMutation(() => post(`/api/repo/trigger/${repoId}`), {
 		onSuccess: () => {
 			mutateJobs();
@@ -174,7 +164,7 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 															rightIcon={<ExternalLinkIcon />}
 															variant="link"
 															color="primary.500"
-															href={`${job.repo.htmlUrl}/blob/${mainBranch}/${parsedFile}#L${log.startLine}-L${log.endLine}`}
+															href={`${job.repo.htmlUrl}/blob/${job.repo.defaultBranch}/${parsedFile}#L${log.startLine}-L${log.endLine}`}
 															isExternal
 														>
 															{parsedFile}

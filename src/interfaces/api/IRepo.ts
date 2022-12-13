@@ -7,4 +7,5 @@ export interface IRepo {
 	hookUrl: string;
 	branchesUrl: string;
 	cloneUrl: string;
+	defaultBranch: string;
 }
