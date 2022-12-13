@@ -15,8 +15,6 @@ import {
 import { FC, ReactNode } from 'react';
 import { Controller } from 'react-hook-form';
 
-interface IRepositoryDetailsProps {}
-
 function RadioCard(props: UseRadioProps & { children: ReactNode }) {
 	const { getInputProps, getCheckboxProps } = useRadio(props);
 
@@ -51,7 +49,7 @@ function Selection({ options, ...useRadioProps }) {
 
 	return (
 		<HStack {...group} backgroundColor="#F5F5F5" borderRadius={10} p={2} justifyContent="space-around">
-			{options.map((value: any) => {
+			{options.map((value: string) => {
 				const radio = getRadioProps({ value });
 				return (
 					<RadioCard key={value} {...radio}>

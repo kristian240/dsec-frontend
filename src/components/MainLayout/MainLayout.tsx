@@ -10,7 +10,7 @@ interface IMainLayoutProps extends FlexProps {
 
 export const MainLayout: FC<IMainLayoutProps> = ({ navigation, children, containerProps, ...rest }) => {
 	return (
-		<Flex direction="column" minH="100vh">
+		<Flex direction="column" minH="100vh" {...rest}>
 			<Container as="header" maxW="container.lg">
 				<Flex py={6} align="center" gap={8}>
 					<Link as={NextLink} href="/">

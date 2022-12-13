@@ -20,7 +20,7 @@ export const TimeAgo = ({ date }: { date: Date }) => {
 };
 
 interface ICompliantBadgeProps extends TagProps {
-	log?: Array<any>;
+	log?: Array<unknown>;
 }
 
 export const CompliantBadge: FC<ICompliantBadgeProps> = ({ log, ...rest }) => {

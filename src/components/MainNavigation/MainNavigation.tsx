@@ -21,6 +21,7 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 	const { cache } = useSWRConfig();
 
 	const [handleLogout] = useMutation(logout, {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore `clear` exists on `cache` but is not in the type definition
 		onSuccess: () => cache.clear(),
 	});

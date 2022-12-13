@@ -1,11 +1,11 @@
-import { Box, HStack, Text } from '@chakra-ui/react';
-import Image, { StaticImageData } from 'next/image';
-import { CSSProperties } from 'react';
 import Deployment from '@/images/deployment.png';
 import Design from '@/images/design.png';
+import Development from '@/images/development.png';
 import Requirements from '@/images/requirements.png';
 import Testing from '@/images/testing.png';
-import Development from '@/images/development.png';
+import { HStack, Text } from '@chakra-ui/react';
+import Image, { StaticImageData } from 'next/image';
+import { CSSProperties, FC } from 'react';
 
 export enum Topics {
 	Requirements,
@@ -19,7 +19,7 @@ interface TopicProps {
 	variant: Topics;
 }
 
-const Topic: React.FC<TopicProps> = ({ variant }) => {
+const Topic: FC<TopicProps> = ({ variant }) => {
 	const { img, bg, title, url } = Variants[variant];
 
 	return (

@@ -1,5 +1,4 @@
-import { CompliantBadge } from '@/components/repo/RepoJobsSection/CompliantBadge';
-import { TimeAgo } from '@/components/repo/RepoJobsSection/elements';
+import { CompliantBadge, TimeAgo } from '@/components/repo/RepoJobsSection/elements';
 import { IRepo } from '@/interfaces/api/IRepo';
 import { post } from '@/utils/network';
 import { AddIcon, ExternalLinkIcon } from '@chakra-ui/icons';
