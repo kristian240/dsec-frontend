@@ -1,12 +1,13 @@
 import { IRepo } from '@/interfaces/api/IRepo';
 import { post } from '@/utils/network';
-import { AddIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { AddIcon, CheckIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import {
 	Accordion,
 	AccordionButton,
 	AccordionIcon,
 	AccordionItem,
 	AccordionPanel,
+	AlertIcon,
 	Box,
 	BoxProps,
 	Button,
@@ -18,9 +19,11 @@ import {
 	Text,
 	VStack,
 } from '@chakra-ui/react';
+import utcToZonedTime from 'date-fns-tz/utcToZonedTime';
 import NextLink from 'next/link';
 import { FC, useMemo } from 'react';
 import useSWR from 'swr';
+import { format } from 'timeago.js';
 import useMutation from 'use-mutation';
 
 interface IJob {
@@ -60,15 +63,18 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 		mutate: mutateJobs,
 	} = useSWR<Array<IJob>>(repoId ? `/api/job` : null, { refreshInterval: 1000 });
 	const repoJobs = useMemo(
-		() => data?.filter((job) => String(job.repo.id) === repoId).sort((a, b) => a.startTime.localeCompare(b.startTime)),
+		() => data?.filter((job) => String(job.repo.id) === repoId).sort((a, b) => b.startTime.localeCompare(a.startTime)),
 		[data, repoId]
 	);
 
 	const { data: repo } = useSWR(repoId ? `/api/repo/${repoId}` : null);
-	const { data: mainBranch } = useSWR<IRepo>(repo ? repo.url : null, (url: string) =>
-		fetch(url)
-			.then((res) => res.json())
-			.then((res) => res.default_branch)
+	const { data: mainBranch } = useSWR<IRepo>(
+		repo ? repo.url : null,
+		(url: string) =>
+			fetch(url)
+				.then((res) => res.json())
+				.then((res) => res.default_branch),
+		{ revalidateIfStale: false, revalidateOnFocus: false }
 	);
 
 	const [startAnalysis, { status }] = useMutation(() => post(`/api/repo/trigger/${repoId}`), {
@@ -134,14 +140,17 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 					return (
 						<AccordionItem key={job.id}>
 							<AccordionButton>
-								<Box as="span" flex="1" textAlign="left">
+								{job.log.length > 0 ? <AlertIcon color="red.400" /> : <CheckIcon color="green.500" />}
+								<Box as="span" flex="1" textAlign="left" m={2}>
 									Job #{self.length - index}
 								</Box>
+
+								<Box as="span">{format(utcToZonedTime(new Date(job.endTime), 'UTC'))}</Box>
 								<AccordionIcon />
 							</AccordionButton>
 
 							<AccordionPanel pb={4}>
-								{job.log.length > 0 ? (
+								{job.log && job.log.length > 0 ? (
 									<VStack align="stretch">
 										{job.log.map((log) => {
 											const parsedFile = log.file.split('/').slice(1).join('/');
