@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import { FC } from 'react';
-import { mutate, useSWRConfig } from 'swr';
+import { useSWRConfig } from 'swr';
 import useMutation from 'use-mutation';
 
 // dynamically import components used when user is logged in
@@ -17,10 +17,11 @@ const MenuList = dynamic(() => import('@chakra-ui/react').then((mod) => mod.Menu
 
 export const MainNavigation: FC<FlexProps> = (props) => {
 	const { t } = useTranslation('common');
-	const { data, mutate } = useUser();
+	const { data } = useUser();
 	const { cache } = useSWRConfig();
 
 	const [handleLogout] = useMutation(logout, {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore `clear` exists on `cache` but is not in the type definition
 		onSuccess: () => cache.clear(),
 	});
@@ -42,24 +43,27 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 				</Link>
 
 				{data ? (
-					<Menu>
-						<MenuButton as={IconButton} variant="unstyled" icon={<ChevronCircleIcon boxSize={10} />} />
+					<>
+						<Link as={NextLink} href="/dashboard">
+							Dashboard
+						</Link>
 
-						<MenuList>
-							<MenuItem as={NextLink} href="/profile">
-								Profile
-							</MenuItem>
-							<MenuItem as={NextLink} href="/dashboard">
-								Dashboard
-							</MenuItem>
+						<Menu>
+							<MenuButton as={IconButton} variant="unstyled" icon={<ChevronCircleIcon boxSize={10} />} />
 
-							<MenuItem as={NextLink} href="/repos/github">
-								{t('label.github')}
-							</MenuItem>
-							<MenuDivider />
-							<MenuItem onClick={handleLogout}>Log out</MenuItem>
-						</MenuList>
-					</Menu>
+							<MenuList>
+								<MenuItem as={NextLink} href="/profile">
+									Profile
+								</MenuItem>
+
+								<MenuItem as={NextLink} href="/repos/github">
+									{t('label.github')}
+								</MenuItem>
+								<MenuDivider />
+								<MenuItem onClick={handleLogout}>Log out</MenuItem>
+							</MenuList>
+						</Menu>
+					</>
 				) : (
 					<>
 						<Link as={NextLink} href="/login">

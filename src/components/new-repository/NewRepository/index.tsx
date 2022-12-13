@@ -16,8 +16,6 @@ import { useFormContext } from 'react-hook-form';
 import useSWR from 'swr';
 import { RepoFields, RepoFormValues } from '../CreateRepositoryFormLayout/utils';
 
-interface INewRepositoryProps {}
-
 export const NewRepository: FC<StackProps> = (props) => {
 	const { register } = useFormContext<RepoFormValues>();
 	const router = useRouter();
@@ -44,7 +42,7 @@ export const NewRepository: FC<StackProps> = (props) => {
 					<Select {...register(RepoFields.REPO)}>
 						{repos.map((repo) => (
 							<option key={repo.id} value={repo.name}>
-								{repo.full_name}
+								{repo.fullName}
 							</option>
 						))}
 					</Select>

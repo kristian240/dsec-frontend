@@ -1,8 +1,8 @@
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
 import ReadMore from '@/components/wiki/ReadMore';
-import Topic, { Topics } from '@/components/wiki/Topic';
-import { Container, Heading, Flex, Text } from '@chakra-ui/react';
+import { Topics } from '@/components/wiki/Topic';
+import { Container, Heading, Text } from '@chakra-ui/react';
 import { InferGetStaticPropsType, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 

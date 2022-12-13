@@ -1,3 +1,4 @@
+import { RepoFields } from '@/components/new-repository/CreateRepositoryFormLayout/utils';
 import {
 	Box,
 	Container,
@@ -12,8 +13,7 @@ import {
 	UseRadioProps,
 } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
-
-interface IRepositoryDetailsProps {}
+import { Controller } from 'react-hook-form';
 
 function RadioCard(props: UseRadioProps & { children: ReactNode }) {
 	const { getInputProps, getCheckboxProps } = useRadio(props);
@@ -43,14 +43,13 @@ function RadioCard(props: UseRadioProps & { children: ReactNode }) {
 	);
 }
 
-function Selection(props) {
-	const options = Object.values(props);
-	const { getRootProps, getRadioProps } = useRadioGroup();
+function Selection({ options, ...useRadioProps }) {
+	const { getRootProps, getRadioProps } = useRadioGroup(useRadioProps);
 	const group = getRootProps();
 
 	return (
 		<HStack {...group} backgroundColor="#F5F5F5" borderRadius={10} p={2} justifyContent="space-around">
-			{options.map((value: any) => {
+			{options.map((value: string) => {
 				const radio = getRadioProps({ value });
 				return (
 					<RadioCard key={value} {...radio}>
@@ -63,26 +62,32 @@ function Selection(props) {
 }
 
 const types = ['Website', 'Executable', 'Mobile', 'Other'];
-const priorities = ['Finance', 'Social', 'Sport', 'E-commerce'];
+const domains = ['Finance', 'Social', 'Sport', 'E-commerce'];
+
 export const RepositoryDetails: FC<StackProps> = (props) => {
 	return (
 		<Container as={Stack} spacing={5} {...props}>
 			<Text align="center">
 				Select the <b>type</b> of your repository:
 			</Text>
-			<Selection {...types}></Selection>
+			<Controller name={RepoFields.TYPE} render={({ field }) => <Selection options={types} {...field} />} />
 			<Text align="center">
 				Select the <b>domain</b> of your repository:
 			</Text>
-			<Selection {...priorities}></Selection>
-			<RadioGroup>
-				<Text as="b">Do you store any user data?</Text>
-				<Stack>
-					<Radio value="1">Yes, we store personal data such as emails.</Radio>
-					<Radio value="2">Yes, but meta data only.</Radio>
-					<Radio value="3">No</Radio>
-				</Stack>
-			</RadioGroup>
+			<Controller name={RepoFields.DOMAIN} render={({ field }) => <Selection options={domains} {...field} />} />
+			<Controller
+				name={RepoFields.USER_DATA}
+				render={({ field }) => (
+					<RadioGroup {...field}>
+						<Text as="b">Do you store any user data?</Text>
+						<Stack>
+							<Radio value="2">Yes, we store personal data such as emails.</Radio>
+							<Radio value="1">Yes, but meta data only.</Radio>
+							<Radio value="0">No</Radio>
+						</Stack>
+					</RadioGroup>
+				)}
+			/>
 		</Container>
 	);
 };
