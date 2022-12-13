@@ -1,8 +1,6 @@
 import { Icon, IconProps } from '@chakra-ui/react';
 import React, { FC } from 'react';
 
-interface ILogoSvgProps {}
-
 export const LogoSvg: FC<IconProps> = (props) => {
 	return (
 		<Icon color="primary.500" viewBox="0 0 38 39" {...props}>
