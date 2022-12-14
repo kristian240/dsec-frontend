@@ -1,6 +1,7 @@
+import HomeSection from '@/components/HomeSection';
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
-import { Container, Heading } from '@chakra-ui/react';
+import { Container, Heading, Text, VStack } from '@chakra-ui/react';
 import { existsSync } from 'fs';
 import { InferGetServerSidePropsType, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
@@ -14,11 +15,22 @@ const Home: NextPage<HomeProps> = () => {
 
 	return (
 		<MainLayout navigation={<MainNavigation />}>
-			<Container maxW="container.xl" mt={16}>
-				<Heading as="h2" textAlign="center">
+			<VStack>
+				<Heading as="h1" textAlign="center" fontSize="6rem" fontWeight={700}>
 					{t('home.title')}
 				</Heading>
-			</Container>
+				<Heading as="h2" textAlign="center" w="min(100%,532px)" fontSize="3rem" fontWeight={700}>
+					A Data Analyzer tool for ensuring secure software development life-cycle
+				</Heading>
+				<Text>
+					A tool to help developers to find security hotspots and inconsistencies in different SDLC artifacts. Simple
+					and intuitive, that’s what DSEC offers.
+				</Text>
+
+				<HomeSection variant={'flawDetection'} />
+				<HomeSection variant={'gdpr'} />
+				<HomeSection variant={'collaboration'} />
+			</VStack>
 		</MainLayout>
 	);
 };
