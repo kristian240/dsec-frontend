@@ -1,7 +1,7 @@
 import HomeSection from '@/components/HomeSection';
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
-import { Container, Heading, Text, VStack } from '@chakra-ui/react';
+import { Container, Heading, styled, Text, VStack } from '@chakra-ui/react';
 import { existsSync } from 'fs';
 import { InferGetServerSidePropsType, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
@@ -15,22 +15,26 @@ const Home: NextPage<HomeProps> = () => {
 
 	return (
 		<MainLayout navigation={<MainNavigation />}>
-			<VStack>
-				<Heading as="h1" textAlign="center" fontSize="6rem" fontWeight={700}>
-					{t('home.title')}
-				</Heading>
-				<Heading as="h2" textAlign="center" w="min(100%,532px)" fontSize="3rem" fontWeight={700}>
-					A Data Analyzer tool for ensuring secure software development life-cycle
-				</Heading>
-				<Text>
-					A tool to help developers to find security hotspots and inconsistencies in different SDLC artifacts. Simple
-					and intuitive, that’s what DSEC offers.
-				</Text>
+			<Container maxW="992px" px="0">
+				<VStack spacing={8} mb="100px">
+					<Heading as="h1" textAlign="center" fontSize="6rem" fontWeight={700}>
+						{t('home.title')}
+					</Heading>
+					<Heading as="h2" textAlign="center" w="min(100%,532px)" mx="auto" fontSize="3rem" fontWeight={700}>
+						A Data Analyzer tool for ensuring secure software development life-cycle
+					</Heading>
+					<Text textAlign="center" w="100%" maxW="491px">
+						A tool to help developers to find security hotspots and inconsistencies in different SDLC artifacts. Simple
+						and intuitive, that’s what DSEC offers.
+					</Text>
+				</VStack>
 
-				<HomeSection variant={'flawDetection'} />
-				<HomeSection variant={'gdpr'} />
-				<HomeSection variant={'collaboration'} />
-			</VStack>
+				<VStack spacing="6rem">
+					<HomeSection variant={'flawDetection'} />
+					<HomeSection variant={'gdpr'} />
+					<HomeSection variant={'collaboration'} />
+				</VStack>
+			</Container>
 		</MainLayout>
 	);
 };
