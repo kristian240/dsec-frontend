@@ -16,7 +16,7 @@ const Home: NextPage<HomeProps> = () => {
 	return (
 		<MainLayout navigation={<MainNavigation />}>
 			<Container maxW="992px" px="0">
-				<VStack spacing={8} mb="100px">
+				<VStack spacing={8} mb="100px" mt="2rem">
 					<Heading as="h1" textAlign="center" fontSize="6rem" className="albra" lineHeight={1}>
 						{t('home.title')}
 					</Heading>

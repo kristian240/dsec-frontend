@@ -1,11 +1,15 @@
-import { Box, Text, Heading, VStack } from '@chakra-ui/react';
-import { StaticImageData } from 'next/image';
+import { Text, Heading, VStack, HStack } from '@chakra-ui/react';
+import Image, { StaticImageData } from 'next/image';
 import { CSSProperties, FC } from 'react';
+import Gdpr from '../../images/gdpr.png';
+import Security from '../../images/security.png';
+import Team from '../../images/team.png';
 
 type Variant = {
 	title: string;
 	description: string;
 	style: CSSProperties;
+	img: StaticImageData;
 };
 
 type Variants = {
@@ -19,20 +23,20 @@ const variants: Variants = {
 		title: 'GDPR Compliance',
 		description: 'Use DSEC to be sure that your software is compliant with GDPR laws.',
 		style: { backgroundColor: '#00053E', color: 'white' },
-		// img: {},
+		img: Gdpr,
 	},
 	flawDetection: {
 		title: 'Automatic Flaw Detection',
 		description: 'Use DSEC to find security flaws in your software that could compromise the safety of your users.',
 		style: { backgroundColor: '#BB82F8', color: '#161616' },
-		// img: {},
+		img: Security,
 	},
 	collaboration: {
 		title: 'Collaboration',
 		description:
 			'DSEC has been designed to enhance collaboration, get everyone in your team working as one – without disrupting their workflow.',
 		style: { backgroundColor: '#AD691A', color: 'white' },
-		// img: {},
+		img: Team,
 	},
 };
 
@@ -41,15 +45,18 @@ interface HomeSectionProps {
 }
 
 const HomeSection: FC<HomeSectionProps> = ({ variant }) => {
-	const { title, description, style } = variants[variant];
+	const { title, description, style, img } = variants[variant];
 	return (
-		<Box as="section" sx={commonStyles} style={style}>
+		<HStack as="section" sx={commonStyles} style={style}>
 			<VStack justifyContent="space-between" h="100%" alignItems="flex-start" maxW="50%">
-				<Heading as="h3">{title}</Heading>
+				<Heading as="h3" className="albra">
+					{title}
+				</Heading>
 				<Text>{description}</Text>
 				<div></div>
 			</VStack>
-		</Box>
+			<Image src={img} alt="" height={270} width={400} />
+		</HStack>
 	);
 };
 
