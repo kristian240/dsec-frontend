@@ -1,7 +1,7 @@
 import { AuthRedirect } from '@/components/AuthRedirect/AuthRedirect';
 import { CreateRepositorySteps, steps } from '@/components/new-repository/CreateRepositoryFormLayout/enums';
 import { ChevronIcon } from '@/icon/ChevronIcon';
-import { Box, BoxProps, Button, Center, Flex, Heading } from '@chakra-ui/react';
+import { Box, BoxProps, Button, Center, Flex, Heading, useToast } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { FC, ReactNode, useState } from 'react';
@@ -22,10 +22,14 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 		handleSubmit,
 		formState: { isValid },
 	} = useFormContext<RepoFormValues>();
+	const toast = useToast();
 
 	const [onSubmit] = useMutation(createRepo, {
 		onSuccess: () => {
 			router.push('/dashboard');
+		},
+		onFailure: ({ error }) => {
+			toast({ title: 'Ops! Something went wrong', status: 'error', description: error?.message });
 		},
 	});
 
