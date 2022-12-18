@@ -18,7 +18,10 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 	const [stepIndex, setStepIndex] = useState(() => 0);
 	const step = steps[stepIndex];
 	const router = useRouter();
-	const { handleSubmit } = useFormContext<RepoFormValues>();
+	const {
+		handleSubmit,
+		formState: { isValid },
+	} = useFormContext<RepoFormValues>();
 
 	const [onSubmit] = useMutation(createRepo, {
 		onSuccess: () => {
@@ -56,6 +59,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 						<Box>
 							{stepIndex < steps.length - 1 ? (
 								<Button
+									isDisabled={!isValid}
 									onClick={() => setStepIndex((p) => p + 1)}
 									rightIcon={<ChevronIcon transform="rotate(-180deg)" />}
 									variant="link"
@@ -65,6 +69,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 								</Button>
 							) : (
 								<Button
+									isDisabled={!isValid}
 									onClick={handleSubmit(onSubmit)}
 									rightIcon={<ChevronIcon transform="rotate(-180deg)" />}
 									variant="link"
@@ -83,7 +88,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 							{steps.map((step, index) => (
 								<Box
 									as={Center}
-									onClick={() => setStepIndex(index)}
+									onClick={() => (isValid ? setStepIndex(index) : null)}
 									key={step}
 									border="2px"
 									boxSize={12}

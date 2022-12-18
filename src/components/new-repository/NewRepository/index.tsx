@@ -2,6 +2,7 @@ import {
 	Center,
 	Container,
 	FormControl,
+	FormErrorMessage,
 	FormLabel,
 	Input,
 	Select,
@@ -17,7 +18,10 @@ import useSWR from 'swr';
 import { RepoFields, RepoFormValues } from '../CreateRepositoryFormLayout/utils';
 
 export const NewRepository: FC<StackProps> = (props) => {
-	const { register } = useFormContext<RepoFormValues>();
+	const {
+		register,
+		formState: { errors },
+	} = useFormContext<RepoFormValues>();
 	const router = useRouter();
 	const { data: repos } = useSWR('/api/github/user/repos', {
 		onError: (error) => {
@@ -47,13 +51,25 @@ export const NewRepository: FC<StackProps> = (props) => {
 						))}
 					</Select>
 				</FormControl>
-				<FormControl>
+				<FormControl isInvalid={Boolean(errors[RepoFields.NAME])}>
 					<FormLabel>Name</FormLabel>
-					<Input placeholder="Name" {...register(RepoFields.NAME)} />
+					<Input
+						placeholder="Name"
+						{...register(RepoFields.NAME, {
+							required: 'Name is required.',
+						})}
+					/>
+					<FormErrorMessage>{errors[RepoFields.NAME]?.message}</FormErrorMessage>
 				</FormControl>
-				<FormControl>
+				<FormControl isInvalid={Boolean(errors[RepoFields.DESCRIPTION])}>
 					<FormLabel>Description</FormLabel>
-					<Textarea placeholder="Description" {...register(RepoFields.DESCRIPTION)} />
+					<Textarea
+						placeholder="Description"
+						{...register(RepoFields.DESCRIPTION, {
+							required: 'Description is required.',
+						})}
+					/>
+					<FormErrorMessage>{errors[RepoFields.DESCRIPTION]?.message}</FormErrorMessage>
 				</FormControl>
 			</Container>
 		</>

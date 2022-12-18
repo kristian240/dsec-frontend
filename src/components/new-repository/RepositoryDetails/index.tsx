@@ -70,15 +70,24 @@ export const RepositoryDetails: FC<StackProps> = (props) => {
 			<Text align="center">
 				Select the <b>type</b> of your repository:
 			</Text>
-			<Controller name={RepoFields.TYPE} render={({ field }) => <Selection options={types} {...field} />} />
+			<Controller
+				name={RepoFields.TYPE}
+				rules={{ required: true }}
+				render={({ field }) => <Selection options={types} {...field} ref={null} />}
+			/>
 			<Text align="center">
 				Select the <b>domain</b> of your repository:
 			</Text>
-			<Controller name={RepoFields.DOMAIN} render={({ field }) => <Selection options={domains} {...field} />} />
+			<Controller
+				name={RepoFields.DOMAIN}
+				rules={{ required: true }}
+				render={({ field }) => <Selection options={domains} {...field} ref={null} />}
+			/>
 			<Controller
 				name={RepoFields.USER_DATA}
+				rules={{ required: true }}
 				render={({ field }) => (
-					<RadioGroup {...field}>
+					<RadioGroup {...field} ref={null}>
 						<Text as="b">Do you store any user data?</Text>
 						<Stack>
 							<Radio value="2">Yes, we store personal data such as emails.</Radio>
