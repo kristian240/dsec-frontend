@@ -83,6 +83,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 							{steps.map((step, index) => (
 								<Box
 									as={Center}
+									onClick={() => setStepIndex(index)}
 									key={step}
 									border="2px"
 									boxSize={12}
