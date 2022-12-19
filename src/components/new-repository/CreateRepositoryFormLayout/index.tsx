@@ -17,6 +17,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 	const { t } = useTranslation();
 	const [stepIndex, setStepIndex] = useState(() => 0);
 	const step = steps[stepIndex];
+	const [stepClick, setStepClick] = useState(() => 0);
 	const router = useRouter();
 	const {
 		handleSubmit,
@@ -50,6 +51,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 						<Box>
 							{stepIndex !== 0 ? (
 								<Button
+									isDisabled={!isValid}
 									onClick={() => setStepIndex((p) => p - 1)}
 									leftIcon={<ChevronIcon />}
 									variant="link"
@@ -64,7 +66,10 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 							{stepIndex < steps.length - 1 ? (
 								<Button
 									isDisabled={!isValid}
-									onClick={() => setStepIndex((p) => p + 1)}
+									onClick={() => {
+										setStepIndex((p) => p + 1);
+										setStepClick((p) => (p < 3 ? p + 1 : null));
+									}}
 									rightIcon={<ChevronIcon transform="rotate(-180deg)" />}
 									variant="link"
 									colorScheme="primary"
@@ -92,7 +97,10 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 							{steps.map((step, index) => (
 								<Box
 									as={Center}
-									onClick={() => (isValid ? setStepIndex(index) : null)}
+									onClick={() => {
+										isValid && index <= stepClick + 1 ? setStepIndex(index) : null;
+										isValid && stepClick < index ? setStepClick(index) : null;
+									}}
 									key={step}
 									border="2px"
 									boxSize={12}
