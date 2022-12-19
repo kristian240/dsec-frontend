@@ -1,9 +1,11 @@
 import { updateUserData, UserDetailsFormFields, UserDetailsFormValues } from '@/components/UserDetails/utils';
 import { IUserDto } from '@/interfaces/api/IUserDto';
+import { destroy } from '@/utils/network';
 import { Button, FormControl, FormLabel, Input, StackProps, useToast, VStack } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import useMutation from 'use-mutation';
+import { ConfirmButton } from '../ConfirmButton/ConfirmButton';
 
 interface IUserDetailsForm extends StackProps {
 	user: IUserDto;
@@ -50,6 +52,16 @@ export const UserDetailsForm: FC<IUserDetailsForm> = ({ user, onSuccess, ...rest
 					Save changes
 				</Button>
 			) : null}
+			<ConfirmButton
+				headerText="Delete Profile"
+				bodyText="Are you sure you want to delete your profile? This cannot be undone."
+				onSuccessAction={() => {
+					destroy(`/api/users/${user.id}`);
+				}}
+				buttonText="Delete"
+				isDanger={true}
+				redirectLink="/"
+			/>
 		</VStack>
 	);
 };
