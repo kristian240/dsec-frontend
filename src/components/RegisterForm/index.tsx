@@ -101,7 +101,7 @@ export default function RegisterForm() {
 						type="password"
 						placeholder="Password"
 						{...register(RegisterFields.PASSWORD, {
-							required: 'Passsword is required.',
+							required: 'Password is required.',
 							pattern: {
 								value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,}$/,
 								message:
