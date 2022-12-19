@@ -64,7 +64,7 @@ export default function RegisterForm() {
 						{...register(RegisterFields.FIRST_NAME, {
 							required: 'First name is required.',
 							pattern: {
-								value: /[\p{Letter}\p{Mark}]+/,
+								value: /[\p{Letter}\p{Mark}]+/gu,
 								message: 'First name must contain only letters.',
 							},
 							maxLength: {
@@ -83,7 +83,7 @@ export default function RegisterForm() {
 						{...register(RegisterFields.LAST_NAME, {
 							required: 'Last name is required.',
 							pattern: {
-								value: /[\p{Letter}\p{Mark}]+/,
+								value: /[\p{Letter}\p{Mark}]+/gu,
 								message: 'Last name must contain only letters.',
 							},
 							maxLength: {
