@@ -63,6 +63,7 @@ function Selection({ options, ...useRadioProps }) {
 
 const types = ['Website', 'Executable', 'Mobile', 'Other'];
 const domains = ['Finance', 'Social', 'Sport', 'E-commerce'];
+const languages = ['C/C++', 'Python', 'Go', 'PHP', 'Other'];
 
 export const RepositoryDetails: FC<StackProps> = (props) => {
 	return (
@@ -82,6 +83,14 @@ export const RepositoryDetails: FC<StackProps> = (props) => {
 				name={RepoFields.DOMAIN}
 				rules={{ required: true }}
 				render={({ field }) => <Selection options={domains} {...field} ref={null} />}
+			/>
+			<Text align="center">
+				Select the <b>language</b> of your repository:
+			</Text>
+			<Controller
+				name={RepoFields.LANGUAGE}
+				rules={{ required: true }}
+				render={({ field }) => <Selection options={languages} {...field} ref={null} />}
 			/>
 			<Controller
 				name={RepoFields.USER_DATA}

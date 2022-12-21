@@ -51,9 +51,9 @@ export const Prioritization: FC<StackProps> = (props) => {
 				)}
 			/>
 
-			<Text as="b">Service availability</Text>
+			<Text as="b">Privacy</Text>
 			<Controller
-				name={RepoFields.AVAILABILITY}
+				name={RepoFields.PRIVACY}
 				defaultValue={2}
 				render={({ field }) => (
 					<Slider colorScheme="blackAlpha" mt="10px" min={1} max={5} {...field}>
