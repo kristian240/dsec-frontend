@@ -5,6 +5,7 @@ import { Button, Flex, FlexProps, IconButton, Link, MenuDivider } from '@chakra-
 import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { useSWRConfig } from 'swr';
 import useMutation from 'use-mutation';
@@ -19,11 +20,15 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 	const { t } = useTranslation('common');
 	const { data } = useUser();
 	const { cache } = useSWRConfig();
+	const router = useRouter();
 
 	const [handleLogout] = useMutation(logout, {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore `clear` exists on `cache` but is not in the type definition
-		onSuccess: () => cache.clear(),
+		onSuccess: () => {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore `clear` exists on `cache` but is not in the type definition
+			cache.clear();
+			router.push('/');
+		},
 	});
 
 	return (
@@ -60,9 +65,7 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 									{t('label.github')}
 								</MenuItem>
 								<MenuDivider />
-								<MenuItem as={NextLink} href="/" onClick={handleLogout}>
-									Log out
-								</MenuItem>
+								<MenuItem onClick={handleLogout}>Log out</MenuItem>
 							</MenuList>
 						</Menu>
 					</>
