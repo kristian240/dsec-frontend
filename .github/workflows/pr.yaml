@@ -1,8 +1,6 @@
 name: DSec CI
 
-on:
-  pull_request:
-    types: [opened, reopened]
+on: push
 
 jobs:
   d-sec-ci-pr:
