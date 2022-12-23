@@ -37,7 +37,3 @@ jobs:
       - name: Run tests
         shell: bash
         run: npm run test:ci
-      - name: Run next build
-        shell: bash
-        run: npm run build
-
