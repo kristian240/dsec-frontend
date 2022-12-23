@@ -5,6 +5,9 @@
 	"rules": {
 		"no-unused-vars": "off"
 	},
+	"env": {
+		"jest": true
+	},
 	"overrides": [
 		{
 			"files": "*.tsx?",

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainLayout should matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-zf0iqh"
+  >
+    <header
+      class="chakra-container css-f91va8"
+    >
+      <div
+        class="css-ceb67"
+      >
+        <a
+          aria-label="Home"
+          class="chakra-link css-0"
+          href="/"
+        >
+          <svg
+            class="chakra-icon css-1iupk5b"
+            focusable="false"
+            viewBox="0 0 38 39"
+          >
+            <path
+              d="M0 .5h19a19 19 0 1 1-19 19V.5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+      </div>
+    </header>
+    <main
+      class="css-1rr4qq7"
+    />
+  </div>
+</DocumentFragment>
+`;
