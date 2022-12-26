@@ -64,7 +64,7 @@ export default function RegisterForm() {
 						{...register(RegisterFields.FIRST_NAME, {
 							required: 'First name is required.',
 							pattern: {
-								value: /^[a-zA-Z]+$/,
+								value: /[\p{Letter}\p{Mark}]+/gu,
 								message: 'First name must contain only letters.',
 							},
 							maxLength: {
@@ -83,7 +83,7 @@ export default function RegisterForm() {
 						{...register(RegisterFields.LAST_NAME, {
 							required: 'Last name is required.',
 							pattern: {
-								value: /^[a-zA-Z]+$/,
+								value: /[\p{Letter}\p{Mark}]+/gu,
 								message: 'Last name must contain only letters.',
 							},
 							maxLength: {
@@ -101,7 +101,7 @@ export default function RegisterForm() {
 						type="password"
 						placeholder="Password"
 						{...register(RegisterFields.PASSWORD, {
-							required: 'Passsword is required.',
+							required: 'Password is required.',
 							pattern: {
 								value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{10,}$/,
 								message:
