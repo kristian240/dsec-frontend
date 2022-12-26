@@ -13,7 +13,7 @@ export const MainLayout: FC<IMainLayoutProps> = ({ navigation, children, contain
 		<Flex direction="column" minH="100vh" {...rest}>
 			<Container as="header" maxW="container.lg">
 				<Flex py={6} align="center" gap={8}>
-					<Link as={NextLink} href="/">
+					<Link as={NextLink} href="/" aria-label="Home">
 						<LogoSvg boxSize={10} />
 					</Link>
 

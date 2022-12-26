@@ -1,3 +1,5 @@
+import { ConfirmButton } from '@/components/ConfirmButton/ConfirmButton';
+import { destroy } from '@/utils/network';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
 	Box,
@@ -62,6 +64,16 @@ export const RepoDetailsSection: FC<IRepoDetailsSectionProps> = ({ repoId, ...re
 					</TagLabel>
 					<TagRightIcon as={ExternalLinkIcon} />
 				</Tag>
+				<ConfirmButton
+					headerText={`Delete ${data.repoName}`}
+					bodyText="Are you sure you want to delete this repo? This cannot be undone."
+					onSuccessAction={() => {
+						destroy(`/api/repo/${repoId}`);
+					}}
+					buttonText="Delete repo"
+					isDanger={true}
+					redirectLink="/dashboard"
+				/>
 			</Flex>
 
 			<Text fontSize="lg" fontWeight="semibold" mt={4}>

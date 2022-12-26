@@ -1,7 +1,7 @@
 import { AuthRedirect } from '@/components/AuthRedirect/AuthRedirect';
 import { CreateRepositorySteps, steps } from '@/components/new-repository/CreateRepositoryFormLayout/enums';
 import { ChevronIcon } from '@/icon/ChevronIcon';
-import { Box, BoxProps, Button, Center, Flex, Heading } from '@chakra-ui/react';
+import { Box, BoxProps, Button, Center, Flex, Heading, useToast } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { FC, ReactNode, useState } from 'react';
@@ -17,12 +17,20 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 	const { t } = useTranslation();
 	const [stepIndex, setStepIndex] = useState(() => 0);
 	const step = steps[stepIndex];
+	const [stepClick, setStepClick] = useState(() => 0);
 	const router = useRouter();
-	const { handleSubmit } = useFormContext<RepoFormValues>();
+	const {
+		handleSubmit,
+		formState: { isValid },
+	} = useFormContext<RepoFormValues>();
+	const toast = useToast();
 
 	const [onSubmit] = useMutation(createRepo, {
 		onSuccess: () => {
 			router.push('/dashboard');
+		},
+		onFailure: ({ error }) => {
+			toast({ title: 'Ops! Something went wrong', status: 'error', description: error?.message });
 		},
 	});
 
@@ -43,6 +51,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 						<Box>
 							{stepIndex !== 0 ? (
 								<Button
+									isDisabled={!isValid}
 									onClick={() => setStepIndex((p) => p - 1)}
 									leftIcon={<ChevronIcon />}
 									variant="link"
@@ -56,7 +65,11 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 						<Box>
 							{stepIndex < steps.length - 1 ? (
 								<Button
-									onClick={() => setStepIndex((p) => p + 1)}
+									isDisabled={!isValid}
+									onClick={() => {
+										setStepIndex((p) => p + 1);
+										setStepClick((p) => (p < 3 ? p + 1 : null));
+									}}
 									rightIcon={<ChevronIcon transform="rotate(-180deg)" />}
 									variant="link"
 									colorScheme="primary"
@@ -65,6 +78,7 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 								</Button>
 							) : (
 								<Button
+									isDisabled={!isValid}
 									onClick={handleSubmit(onSubmit)}
 									rightIcon={<ChevronIcon transform="rotate(-180deg)" />}
 									variant="link"
@@ -83,6 +97,10 @@ export const CreateRepositoryFormLayout: FC<ICreateRepositoryFormLayoutProps> = 
 							{steps.map((step, index) => (
 								<Box
 									as={Center}
+									onClick={() => {
+										isValid && index <= stepClick + 1 ? setStepIndex(index) : null;
+										isValid && stepClick < index ? setStepClick(index) : null;
+									}}
 									key={step}
 									border="2px"
 									boxSize={12}
