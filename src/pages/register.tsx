@@ -7,7 +7,7 @@ export default function RegisterPage() {
 	return (
 		<MainLayout>
 			<Box mx="auto" my="70px" maxW="500px">
-				<AuthHeader />
+				<AuthHeader mb={4} />
 				<RegisterForm />
 			</Box>
 		</MainLayout>
