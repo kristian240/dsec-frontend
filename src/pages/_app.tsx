@@ -3,6 +3,7 @@ import { get } from '@/utils/network';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { appWithTranslation } from 'next-i18next';
 import { SWRConfig } from 'swr';
+import '../../public/fonts/fonts.css';
 
 const extendedTheme = extendTheme(themeOverrides);
 
