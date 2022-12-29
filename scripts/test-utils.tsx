@@ -1,3 +1,4 @@
+import { get } from '@/utils/network';
 import '@testing-library/jest-dom';
 import { act, render, RenderOptions } from '@testing-library/react';
 import i18n from 'i18next';
@@ -21,7 +22,7 @@ interface IComponentWithChildrenProps {
 
 const AllTheProviders: FC<IComponentWithChildrenProps> = ({ children }) => (
 	<I18nextProvider i18n={i18n}>
-		<SWRConfig value={{ provider: () => new Map() }}>{children}</SWRConfig>
+		<SWRConfig value={{ provider: () => new Map(), fetcher: get }}>{children}</SWRConfig>
 	</I18nextProvider>
 );
 
@@ -30,12 +31,12 @@ const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>
 
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#configuring-your-testing-environment
 const customAct: typeof act = (cb) => {
-	let prev = globalThis.IS_REACT_ACT_ENVIRONMENT;
-	globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+	let prev = global.IS_REACT_ACT_ENVIRONMENT;
+	global.IS_REACT_ACT_ENVIRONMENT = true;
 
 	const result = act(cb);
 
-	globalThis.IS_REACT_ACT_ENVIRONMENT = prev;
+	global.IS_REACT_ACT_ENVIRONMENT = prev;
 
 	return result;
 };
