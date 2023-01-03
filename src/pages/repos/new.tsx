@@ -1,6 +1,5 @@
 import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
-import { AddTeam } from '@/components/new-repository/AddTeam';
 import { CreateRepositoryFormLayout } from '@/components/new-repository/CreateRepositoryFormLayout';
 import { CreateRepositorySteps } from '@/components/new-repository/CreateRepositoryFormLayout/enums';
 import { CreateRepositoryFormProvider } from '@/components/new-repository/CreateRepositoryFormProvider';
@@ -23,7 +22,6 @@ export default function NewRepositoryPage() {
 							[CreateRepositorySteps.NewRepository]: <NewRepository mt={12} />,
 							[CreateRepositorySteps.RepositoryDetails]: <RepositoryDetails mt={12} />,
 							[CreateRepositorySteps.Priorities]: <Prioritization mt={12} />,
-							[CreateRepositorySteps.AddTeam]: <AddTeam mt={12} />,
 						}}
 					/>
 				</CreateRepositoryFormProvider>
