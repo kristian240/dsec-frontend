@@ -126,8 +126,8 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 							<AccordionPanel pb={4}>
 								{job.log?.results && job.log.results.length > 0 ? (
 									<VStack align="stretch">
-										{job.log.results.map((log) => {
-											const parsedFile = log.file.split('/').slice(1).join('/');
+										{job.log.results?.map((log) => {
+											const parsedFile = log.file?.split('/').slice(1).join('/');
 
 											return (
 												<Box key={log.fingerprint} borderLeft="1px" pl={2}>
