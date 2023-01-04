@@ -1,5 +1,5 @@
 import { CompliantBadge, TimeAgo } from '@/components/repo/RepoJobsSection/elements';
-import { IRepo } from '@/interfaces/api/IRepo';
+import { IJob } from '@/interfaces/api/IJob';
 import { post } from '@/utils/network';
 import { AddIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import {
@@ -24,32 +24,6 @@ import { FC, useMemo } from 'react';
 import useSWR from 'swr';
 import useMutation from 'use-mutation';
 
-interface IJob {
-	id: number;
-	startTime: string;
-	endTime?: string;
-	log?: Array<{
-		author: string;
-		commit: string;
-		date: string;
-		description: string;
-		email: string;
-		endColumn: number;
-		endLine: number;
-		entropy: number;
-		file: string;
-		fingerprint: string;
-		match: string;
-		message: string;
-		ruleID: string;
-		secret: string;
-		startColumn: number;
-		startLine: string;
-		symlinkFile: string;
-	}>;
-	repo: IRepo;
-}
-
 interface IRepoJobsSectionProps extends BoxProps {
 	repoId: string;
 }
@@ -59,7 +33,8 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 		data,
 		error,
 		mutate: mutateJobs,
-	} = useSWR<Array<IJob>>(repoId ? `/api/job` : null, { refreshInterval: 1000 });
+	} = useSWR<Array<IJob>>(repoId ? `/api/repo/${repoId}/jobs` : null, { refreshInterval: 1000 });
+
 	const repoJobs = useMemo(
 		() => data?.filter((job) => String(job.repo.id) === repoId).sort((a, b) => b.startTime.localeCompare(a.startTime)),
 		[data, repoId]
@@ -133,7 +108,7 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 										Job #{self.length - index}
 									</Box>
 
-									<CompliantBadge log={job.log} />
+									<CompliantBadge compliant={job.compliant} />
 								</Box>
 
 								{job.endTime ? (
@@ -149,10 +124,10 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 							</AccordionButton>
 
 							<AccordionPanel pb={4}>
-								{job.log && job.log.length > 0 ? (
+								{job.log?.results && job.log.results.length > 0 ? (
 									<VStack align="stretch">
-										{job.log.map((log) => {
-											const parsedFile = log.file.split('/').slice(1).join('/');
+										{job.log.results?.map((log) => {
+											const parsedFile = log.file?.split('/').slice(1).join('/');
 
 											return (
 												<Box key={log.fingerprint} borderLeft="1px" pl={2}>
