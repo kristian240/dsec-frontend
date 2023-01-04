@@ -1,5 +1,5 @@
 import { LogoSvg } from '@/icon/Logo';
-import { Box, BoxProps, Container, Flex, FlexProps, Link } from '@chakra-ui/react';
+import { Box, BoxProps, Container, Flex, FlexProps, Link, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import React, { FC } from 'react';
 
@@ -21,8 +21,16 @@ export const MainLayout: FC<IMainLayoutProps> = ({ navigation, children, contain
 				</Flex>
 			</Container>
 
-			<Box flex={1} as="main" {...containerProps}>
+			<Box flex={1} as="main" mb={8} {...containerProps}>
 				{children}
+			</Box>
+
+			<Box as="footer" bg="primary.500">
+				<Container maxW="container.lg" py={2}>
+					<Text color="white" align="center">
+						2023 &copy; DSec
+					</Text>
+				</Container>
 			</Box>
 		</Flex>
 	);
