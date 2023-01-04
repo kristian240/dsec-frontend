@@ -1,6 +1,6 @@
 import type { IRepo } from '@/interfaces/api/IRepo';
 
-interface IGitLeaksJob {
+export interface IGitLeaksJob {
 	results: Array<{
 		author: string;
 		commit: string;
@@ -22,7 +22,7 @@ interface IGitLeaksJob {
 	}>;
 }
 
-interface IGoKartJob {
+export interface IGoKartJob {
 	results: Array<{
 		sinkColumn: number;
 		sinkFile: string;
@@ -39,9 +39,9 @@ interface IGoKartJob {
 	}>;
 }
 
-interface IProgPilotJob extends IGoKartJob {}
+export interface IProgPilotJob extends IGoKartJob {}
 
-interface IBanditJob {
+export interface IBanditJob {
 	errors: Array<{
 		filename: string;
 		reason: string;
@@ -75,11 +75,56 @@ interface IBanditJob {
 	}>;
 }
 
-export interface IJob {
+/**
+ * @schema https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json
+ */
+export interface IFlawFinderJob {
+	runs: Array<{
+		results: Array<{
+			message: {
+				text: string;
+			};
+			locations: Array<{
+				physicalLocation: {
+					artifactLocation: {
+						uri: string;
+					};
+					region: {
+						endLine?: number;
+						startLine: number;
+					};
+				};
+			}>;
+		}>;
+	}>;
+}
+
+type ToolReturn =
+	| {
+			tool: { toolName: 'GITLEAKS' };
+			log: IGitLeaksJob;
+	  }
+	| {
+			tool: { toolName: 'GOKART' };
+			log: IGoKartJob;
+	  }
+	| {
+			tool: { toolName: 'PROGPILOT' };
+			log: IProgPilotJob;
+	  }
+	| {
+			tool: { toolName: 'FLAWFINDER' };
+			log: IFlawFinderJob;
+	  }
+	| {
+			tool: { toolName: 'BANDIT' };
+			log: IBanditJob;
+	  };
+
+export type IJob = ToolReturn & {
 	id: number;
 	startTime: string;
 	endTime?: string;
 	compliant: boolean;
-	log?: IGitLeaksJob | IGoKartJob | IProgPilotJob | IBanditJob;
 	repo: IRepo;
-}
+};
