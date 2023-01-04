@@ -71,7 +71,7 @@ interface IToolOutput extends SystemProps {
 
 export const ToolOutput: FC<IToolOutput> = ({ job, ...rest }) => {
 	if (job.tool.toolName === 'GITLEAKS') {
-		if (!(job.log as IGitLeaksJob)?.results.length) return <Text {...rest}>No logs to show</Text>;
+		if (!(job.log as IGitLeaksJob)?.results?.length) return <Text {...rest}>No logs to show</Text>;
 
 		return (
 			<VStack align="stretch" {...rest}>
@@ -100,12 +100,12 @@ export const ToolOutput: FC<IToolOutput> = ({ job, ...rest }) => {
 		);
 	}
 
-	if (job.tool.toolName === 'PROGPILOT' || job.tool.toolName === 'GOKART') {
-		if (!(job.log as IProgPilotJob | IGoKartJob)?.results.length) return <Text {...rest}>No logs to show</Text>;
+	if (job.tool.toolName === 'PROGPILOT' || job.tool.toolName === 'BANDIT') {
+		if (!(job.log as IProgPilotJob | IGoKartJob)?.results?.length) return <Text {...rest}>No logs to show</Text>;
 
 		return (
 			<VStack align="stretch" {...rest}>
-				{(job.log as IProgPilotJob | IGoKartJob).results.map((log) => {
+				{(job.log as IProgPilotJob | IBanditJob).results.map((log) => {
 					const parsedFile = log.sinkFile?.split(/\d{1,2}:\d{1,2}:\d{1,2}\.\d+/)?.[1];
 
 					return (
@@ -137,22 +137,20 @@ export const ToolOutput: FC<IToolOutput> = ({ job, ...rest }) => {
 		);
 	}
 
-	if (job.tool.toolName === 'BANDIT') {
-		if (!(job.log as IBanditJob)?.results.length) return <Text {...rest}>No logs to show</Text>;
+	if (job.tool.toolName === 'GOKART') {
+		if (!(job.log as IGoKartJob)?.results?.length) return <Text {...rest}>No logs to show</Text>;
 
 		return (
 			<VStack align="stretch" {...rest}>
-				{(job.log as IBanditJob).results.map((log) => {
-					const parsedFile = log.sinkFile?.split(/\d{1,2}:\d{1,2}:\d{1,2}\.\d+/)?.[1];
+				{(job.log as IGoKartJob).results.map((log) => {
+					const cwe = log.type.match(/\d+/);
+					const parsedFile = log.vulnerableFunction?.sourceFilename?.split(/\d{1,2}:\d{1,2}:\d{1,2}\.\d+/)?.[1];
 
 					return (
-						<Box key={log.vulnId} borderLeft="1px" pl={2}>
+						<Box key={log.type + parsedFile} borderLeft="1px" pl={2}>
 							<Text>
-								<Link
-									href={`https://www.cvedetails.com/cwe-details/${log.vulnCwe?.split('_')?.[1]}/cwe.html`}
-									isExternal
-								>
-									{log.vulnName} | {log.vulnCwe}
+								<Link href={`https://www.cvedetails.com/cwe-details/${cwe}/cwe.html`} isExternal>
+									{log.type}
 								</Link>
 							</Text>
 							<Text>
@@ -161,7 +159,7 @@ export const ToolOutput: FC<IToolOutput> = ({ job, ...rest }) => {
 									rightIcon={<ExternalLinkIcon />}
 									variant="link"
 									color="primary.500"
-									href={`${job.repo.htmlUrl}/blob/${job.repo.defaultBranch}${parsedFile}#L${log.sinkLine}`}
+									href={`${job.repo.htmlUrl}/blob/${job.repo.defaultBranch}${parsedFile}#L${log.vulnerableFunction?.sourceLineNum}`}
 									isExternal
 								>
 									{parsedFile}

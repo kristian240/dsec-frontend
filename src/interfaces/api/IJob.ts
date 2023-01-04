@@ -24,18 +24,13 @@ export interface IGitLeaksJob {
 
 export interface IGoKartJob {
 	results: Array<{
-		sinkColumn: number;
-		sinkFile: string;
-		sinkLine: number;
-		sinkName: string;
-		sourceColumn: Array<number>;
-		sourceFile: Array<string>;
-		sourceLine: Array<number>;
-		sourceName: Array<string>;
-		vulnCwe: string;
-		vulnId: string;
-		vulnName: string;
-		vulnType: string;
+		type: string;
+		vulnerableFunction: {
+			parentFunction: string;
+			sourceCode: string;
+			sourceFilename: string;
+			sourceLineNum: number;
+		};
 	}>;
 }
 
