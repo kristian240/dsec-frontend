@@ -20,11 +20,12 @@ export const TimeAgo = ({ date }: { date: Date }) => {
 };
 
 interface ICompliantBadgeProps extends TagProps {
-	log?: Array<unknown>;
+	loading?: boolean;
+	compliant?: boolean;
 }
 
-export const CompliantBadge: FC<ICompliantBadgeProps> = ({ log, ...rest }) => {
-	if (!log) {
+export const CompliantBadge: FC<ICompliantBadgeProps> = ({ compliant, loading, ...rest }) => {
+	if (loading) {
 		return (
 			<Tag colorScheme="gray" {...rest}>
 				<TagLeftIcon as={Spinner} />
@@ -33,7 +34,7 @@ export const CompliantBadge: FC<ICompliantBadgeProps> = ({ log, ...rest }) => {
 		);
 	}
 
-	if (log.length === 0) {
+	if (compliant) {
 		return (
 			<Tag colorScheme="green" {...rest}>
 				<TagLeftIcon as={CheckIcon} />

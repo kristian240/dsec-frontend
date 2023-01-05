@@ -7,7 +7,7 @@ export default function LoginPage() {
 	return (
 		<MainLayout>
 			<Box mx="auto" my="70px" maxW="500px">
-				<AuthHeader />
+				<AuthHeader mb={4} />
 				<LoginForm />
 			</Box>
 		</MainLayout>

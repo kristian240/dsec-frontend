@@ -1,4 +1,5 @@
 import { ConfirmButton } from '@/components/ConfirmButton/ConfirmButton';
+import { IRepo } from '@/interfaces/api/IRepo';
 import { destroy } from '@/utils/network';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
@@ -23,7 +24,7 @@ interface IRepoDetailsSectionProps extends BoxProps {
 }
 
 export const RepoDetailsSection: FC<IRepoDetailsSectionProps> = ({ repoId, ...rest }) => {
-	const { data, error } = useSWR(repoId ? `/api/repo/${repoId}` : null);
+	const { data, error } = useSWR<IRepo>(repoId ? `/api/repo/${repoId}` : null);
 
 	if (error) {
 		return (
@@ -54,7 +55,7 @@ export const RepoDetailsSection: FC<IRepoDetailsSectionProps> = ({ repoId, ...re
 				<Tag colorScheme="cyan">Type: {data.type}</Tag>
 				<Tag colorScheme="green">Domain: {data.domain}</Tag>
 				<Tag colorScheme="blue">User data: {data.userData ? '☑️' : '❌'}</Tag>
-				<Tag colorScheme="pink">Availability: {data.availability} / 5</Tag>
+				<Tag colorScheme="pink">Privacy: {data.privacy} / 5</Tag>
 				<Tag colorScheme="red">Security: {data.security} / 5</Tag>
 				<Tag colorScheme="gray">
 					<TagLabel>

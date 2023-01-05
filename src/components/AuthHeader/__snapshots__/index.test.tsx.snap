@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthHeader should be highlight current page 1`] = `
+<DocumentFragment>
+  <div
+    class="css-xi606m"
+  >
+    <b
+      class="chakra-heading css-0"
+    >
+      DSEC
+    </b>
+    <p
+      class="chakra-text css-0"
+    >
+      The simplest way to create 
+      <b>
+        secure software
+      </b>
+    </p>
+    <div
+      class="css-1n0zz00"
+    >
+      <div
+        aria-current="page"
+        class="css-1hxhl85"
+      >
+        <a
+          class="chakra-link css-0"
+          href="/login"
+        >
+          Login
+        </a>
+      </div>
+      <div
+        class="css-1hxhl85"
+      >
+        <a
+          class="chakra-link css-0"
+          href="/register"
+        >
+          Register
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`AuthHeader should matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-xi606m"
+  >
+    <b
+      class="chakra-heading css-0"
+    >
+      DSEC
+    </b>
+    <p
+      class="chakra-text css-0"
+    >
+      The simplest way to create 
+      <b>
+        secure software
+      </b>
+    </p>
+    <div
+      class="css-1n0zz00"
+    >
+      <div
+        class="css-1hxhl85"
+      >
+        <a
+          class="chakra-link css-0"
+          href="/login"
+        >
+          Login
+        </a>
+      </div>
+      <div
+        class="css-1hxhl85"
+      >
+        <a
+          class="chakra-link css-0"
+          href="/register"
+        >
+          Register
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

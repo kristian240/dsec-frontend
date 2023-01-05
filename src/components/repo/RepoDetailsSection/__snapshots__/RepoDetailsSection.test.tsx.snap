@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RepoDetailsSection when repoId exists should matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-0"
+  >
+    <h2
+      class="chakra-heading css-0"
+    />
+    <div
+      class="css-pn2qr0"
+    >
+      <span
+        class="css-1qm7lvz"
+      >
+        Type: 
+      </span>
+      <span
+        class="css-1qm7lvz"
+      >
+        Domain: 
+      </span>
+      <span
+        class="css-1qm7lvz"
+      >
+        User data: ❌
+      </span>
+      <span
+        class="css-1qm7lvz"
+      >
+        Privacy: 1 / 6
+      </span>
+      <span
+        class="css-1qm7lvz"
+      >
+        Security: 2 / 6
+      </span>
+      <span
+        class="css-1qm7lvz"
+      >
+        <span
+          class="css-zvlevn"
+        >
+          <a
+            class="chakra-link css-0"
+            rel="noopener"
+            target="_blank"
+          >
+            GitHub Repo
+          </a>
+        </span>
+        <svg
+          class="chakra-icon chakra-icon css-1r2vfnw"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <g
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"
+          >
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <path
+              d="M15 3h6v6"
+            />
+            <path
+              d="M10 14L21 3"
+            />
+          </g>
+        </svg>
+      </span>
+      <button
+        class="chakra-button css-4xx2wk"
+        type="button"
+      >
+        Delete repo
+      </button>
+    </div>
+    <p
+      class="chakra-text css-9rlny8"
+    >
+      Repo description
+    </p>
+    <p
+      class="chakra-text css-cssgv9"
+    >
+      test
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RepoDetailsSection when repoId is falsy should matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-gmuwbf"
+  >
+    <div
+      class="chakra-spinner css-1y7joxr"
+    >
+      <span
+        class="css-8b45rq"
+      >
+        Loading...
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
