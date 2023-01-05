@@ -55,8 +55,8 @@ export const RepoDetailsSection: FC<IRepoDetailsSectionProps> = ({ repoId, ...re
 				<Tag colorScheme="cyan">Type: {data.type}</Tag>
 				<Tag colorScheme="green">Domain: {data.domain}</Tag>
 				<Tag colorScheme="blue">User data: {data.userData ? '☑️' : '❌'}</Tag>
-				<Tag colorScheme="pink">Privacy: {data.privacy} / 6</Tag>
-				<Tag colorScheme="red">Security: {data.security} / 6</Tag>
+				<Tag colorScheme="pink">Privacy: {data.privacy} / 5</Tag>
+				<Tag colorScheme="red">Security: {data.security} / 5</Tag>
 				<Tag colorScheme="gray">
 					<TagLabel>
 						<Link href={data.htmlUrl} isExternal>

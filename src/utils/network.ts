@@ -38,7 +38,7 @@ export const post = (endpoint: string, body = {}, fetchOptions: RequestInit = {}
 
 export const update = (endpoint: string, body = {}, fetchOptions: RequestInit = {}) => {
 	const reqOptions = Object.assign({}, fetchOptions, {
-		method: 'PATCH',
+		method: 'PUT',
 		headers: Object.assign({}, defaultHeaders, fetchOptions.headers),
 		body: JSON.stringify(body),
 	});

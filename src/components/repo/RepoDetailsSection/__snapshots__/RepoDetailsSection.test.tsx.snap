@@ -29,12 +29,12 @@ exports[`RepoDetailsSection when repoId exists should matches snapshot 1`] = `
       <span
         class="css-1qm7lvz"
       >
-        Privacy: 1 / 6
+        Privacy: 1 / 5
       </span>
       <span
         class="css-1qm7lvz"
       >
-        Security: 2 / 6
+        Security: 2 / 5
       </span>
       <span
         class="css-1qm7lvz"
