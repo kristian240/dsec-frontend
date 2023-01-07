@@ -18,7 +18,7 @@ const DesignWikiPage = () => {
 		{
 			title: 'Use secure design patterns',
 			description:
-				'Implement security controls (e.g., authentication, authorization, encryption) to protect the software from threats.Leverage design patterns that have been proven to be secure, such as the "principle of least privilege" and "fail-safe defaults".',
+				'Leverage design patterns that have been proven to be secure, such as the "principle of least privilege" and "fail-safe defaults".',
 		},
 		{
 			title: 'Use a design review',
