@@ -58,7 +58,7 @@ const Variants: { img: StaticImageData; bg: string; title: string; url: string }
 		img: Development,
 		bg: '#7D97F4',
 		title: 'Development',
-		url: '/wiki/devlopment',
+		url: '/wiki/development',
 	},
 	{
 		img: Testing,
