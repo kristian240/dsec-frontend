@@ -1,4 +1,6 @@
+import { Topics } from '@/components/wiki/Topic';
 import WikiPage from '@/components/wiki/WikiPage';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 
 const DesignWikiPage = () => {
@@ -24,7 +26,15 @@ const DesignWikiPage = () => {
 		},
 	];
 
-	return <WikiPage title={'Design'} content={content} accentColor={'#FF8077'} />;
+	return <WikiPage title={'Design'} content={content} topic={Topics.Design} />;
+};
+
+export const getStaticProps = async ({ locale }) => {
+	return {
+		props: {
+			...(await serverSideTranslations(String(locale), ['common'])),
+		},
+	};
 };
 
 export default DesignWikiPage;

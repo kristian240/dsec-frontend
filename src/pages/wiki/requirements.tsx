@@ -2,6 +2,7 @@ import { MainLayout } from '@/components/MainLayout/MainLayout';
 import { MainNavigation } from '@/components/MainNavigation/MainNavigation';
 import ReadMore from '@/components/wiki/ReadMore';
 import Tip from '@/components/wiki/Tip';
+import { Topics } from '@/components/wiki/Topic';
 import WikiPage from '@/components/wiki/WikiPage';
 import { Box, Container, Heading, VStack } from '@chakra-ui/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -36,9 +37,7 @@ const RequirementsPage = () => {
 		},
 	];
 
-	const accentColor = '#4042E2';
-
-	return <WikiPage title="Requirements" content={content} accentColor={accentColor} />;
+	return <WikiPage title="Requirements" content={content} topic={Topics.Requirements} />;
 };
 
 export const getStaticProps = async ({ locale }) => {
