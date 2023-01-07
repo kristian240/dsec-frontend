@@ -25,9 +25,9 @@ const WikiPage: React.FC<WikiPageProps> = ({ title, content, topic }) => {
 			case Topics.Deployment:
 				return '#F29A33';
 			case Topics.Testing:
-				return '#F29A33';
+				return '#A13976';
 			case Topics.Development:
-				return '#F29A33';
+				return '#7D97F4';
 		}
 	}, [topic]);
 
