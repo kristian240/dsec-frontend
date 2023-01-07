@@ -1,4 +1,4 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
 import Topic, { Topics } from '../Topic';
 
@@ -10,7 +10,7 @@ const ReadMore: React.FC<ReadMoreProps> = ({ activeTopic }) => {
 	const topics = [Topics.Requirements, Topics.Design, Topics.Deployment, Topics.Testing, Topics.Deployment];
 
 	return (
-		<>
+		<Box maxW="800" mx="auto" mt="100px">
 			<Heading as="h3" fontSize="24px">
 				Read more
 			</Heading>
@@ -21,7 +21,7 @@ const ReadMore: React.FC<ReadMoreProps> = ({ activeTopic }) => {
 				<Topic variant={Topics.Testing} />
 				<Topic variant={Topics.Deployment} />
 			</Flex>
-		</>
+		</Box>
 	);
 };
 
