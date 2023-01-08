@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo should matches snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    class="chakra-icon css-q5208i"
+    focusable="false"
+    viewBox="0 0 38 39"
+  >
+    <path
+      d="M0 .5h19a19 19 0 1 1-19 19V.5Z"
+      fill="currentColor"
+    />
+  </svg>
+</DocumentFragment>
+`;
