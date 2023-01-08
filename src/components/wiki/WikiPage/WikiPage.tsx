@@ -15,33 +15,23 @@ interface WikiPageProps {
 	topic: Topics;
 }
 
-const WikiPage: React.FC<WikiPageProps> = ({ title, content, topic }) => {
-	const accentColor = useMemo(() => {
-		switch (topic) {
-			case Topics.Requirements:
-				return '#4042E2';
-			case Topics.Design:
-				return '#FF8077';
-			case Topics.Deployment:
-				return '#F29A33';
-			case Topics.Testing:
-				return '#A13976';
-			case Topics.Development:
-				return '#7D97F4';
-		}
-	}, [topic]);
+interface WikiPageLayoutProps {
+	title: string;
+  children: React.ReactNode;
+}
 
-	return (
+const WikiPageLayout: FC<WikiPageLayoutProps> = ({ title, children }) => {
+  return (
 		<MainLayout navigation={<MainNavigation />}>
 			<Heading as="h1" className="albra" py="200" textAlign="center" w="100%" bgColor={accentColor} color="#fff">
 				{title}
 			</Heading>
-			{content.map((item, index) => (
-				<Tip key={index} {...item} index={index} align={index % 2 === 0 ? 'left' : 'right'} accentColor={accentColor} />
-			))}
+			
+      {children}
+
 			<ReadMore activeTopic={topic} />
 		</MainLayout>
 	);
-};
+}
 
 export default WikiPage;
