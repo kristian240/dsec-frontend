@@ -15,7 +15,7 @@ const ReadMore: React.FC<ReadMoreProps> = ({ activeTopic }) => {
 				Read more
 			</Heading>
 			<Flex wrap="wrap" gap="2rem" justifyContent="center" mt="3rem">
-				{topics.map((variant) => (activeTopic ? <Topic variant={variant} key={variant} /> : <></>))}
+				{activeTopic ? <Topic variant={activeTopic} /> : null}
 				<Topic variant={Topics.Design} />
 				<Topic variant={Topics.Development} />
 				<Topic variant={Topics.Testing} />

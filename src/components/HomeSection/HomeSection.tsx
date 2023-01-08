@@ -55,7 +55,7 @@ const HomeSection: FC<HomeSectionProps> = ({ variant }) => {
 				<Text>{description}</Text>
 				<div></div>
 			</VStack>
-			<Image src={img} alt="" height={270} width={400} />
+			<Image src={img} alt="" height={270} width={400} role="presentation" />
 		</HStack>
 	);
 };

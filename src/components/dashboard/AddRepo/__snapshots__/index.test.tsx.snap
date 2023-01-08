@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddRepo should matches snapshot 1`] = `
+<DocumentFragment>
+  <a
+    class="chakra-button css-t68bru"
+    href="/repos/new"
+  >
+    New Repo
+  </a>
+</DocumentFragment>
+`;

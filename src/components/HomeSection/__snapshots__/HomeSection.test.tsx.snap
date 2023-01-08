@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeSection should matches gdpr snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="chakra-stack css-1r8bz70"
+    style="background-color: rgb(0, 5, 62); color: white;"
+  >
+    <div
+      class="chakra-stack css-9fdz3h"
+    >
+      <h3
+        class="chakra-heading albra css-0"
+      >
+        GDPR Compliance
+      </h3>
+      <p
+        class="chakra-text css-0"
+      >
+        Use DSEC to be sure that your software is compliant with GDPR laws.
+      </p>
+      <div />
+    </div>
+    <img
+      alt=""
+      data-nimg="1"
+      decoding="async"
+      height="270"
+      loading="lazy"
+      role="presentation"
+      src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
+      srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
+      style="color: transparent;"
+      width="400"
+    />
+  </section>
+</DocumentFragment>
+`;
+
+exports[`HomeSection should matches privacy snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="chakra-stack css-1r8bz70"
+    style="background-color: rgb(173, 105, 26); color: white;"
+  >
+    <div
+      class="chakra-stack css-9fdz3h"
+    >
+      <h3
+        class="chakra-heading albra css-0"
+      >
+        Collaboration
+      </h3>
+      <p
+        class="chakra-text css-0"
+      >
+        DSEC has been designed to enhance collaboration, get everyone in your team working as one – without disrupting their workflow.
+      </p>
+      <div />
+    </div>
+    <img
+      alt=""
+      data-nimg="1"
+      decoding="async"
+      height="270"
+      loading="lazy"
+      role="presentation"
+      src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
+      srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
+      style="color: transparent;"
+      width="400"
+    />
+  </section>
+</DocumentFragment>
+`;
+
+exports[`HomeSection should matches terms snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="chakra-stack css-1r8bz70"
+    style="background-color: rgb(187, 130, 248); color: rgb(22, 22, 22);"
+  >
+    <div
+      class="chakra-stack css-9fdz3h"
+    >
+      <h3
+        class="chakra-heading albra css-0"
+      >
+        Automatic Flaw Detection
+      </h3>
+      <p
+        class="chakra-text css-0"
+      >
+        Use DSEC to find security flaws in your software that could compromise the safety of your users.
+      </p>
+      <div />
+    </div>
+    <img
+      alt=""
+      data-nimg="1"
+      decoding="async"
+      height="270"
+      loading="lazy"
+      role="presentation"
+      src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
+      srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
+      style="color: transparent;"
+      width="400"
+    />
+  </section>
+</DocumentFragment>
+`;

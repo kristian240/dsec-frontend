@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm should matches snapshot 1`] = `
+<DocumentFragment>
+  <form>
+    <div
+      class="chakra-stack css-o5l3sd"
+    >
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r0:"
+          id="field-:r0:-label"
+        >
+          Email
+          <span
+            aria-hidden="true"
+            class="chakra-form__required-indicator css-0"
+            role="presentation"
+          >
+            *
+          </span>
+        </label>
+        <input
+          aria-required="true"
+          class="chakra-input css-0"
+          id="field-:r0:"
+          name="login-email"
+          placeholder="Email"
+          required=""
+          type="email"
+        />
+      </div>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r1:"
+          id="field-:r1:-label"
+        >
+          Password
+          <span
+            aria-hidden="true"
+            class="chakra-form__required-indicator css-0"
+            role="presentation"
+          >
+            *
+          </span>
+        </label>
+        <input
+          aria-required="true"
+          class="chakra-input css-0"
+          id="field-:r1:"
+          name="login-password"
+          placeholder="Password"
+          required=""
+          type="password"
+        />
+      </div>
+      <button
+        class="chakra-button css-4xx2wk"
+        type="submit"
+      >
+        Login
+      </button>
+      <p
+        class="chakra-text css-xi606m"
+      >
+        Have you forgot you password?
+      </p>
+    </div>
+  </form>
+</DocumentFragment>
+`;

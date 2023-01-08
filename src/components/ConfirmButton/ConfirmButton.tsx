@@ -19,12 +19,14 @@ interface ConfirmButtonProps {
 	bodyText: string;
 	buttonText: string;
 	isDanger?: boolean;
+	closeButtonText?: string;
 	redirectLink: string;
 }
 
 export const ConfirmButton = ({
 	onSuccessAction,
 	buttonText,
+	closeButtonText = 'Close',
 	headerText,
 	bodyText,
 	isDanger,
@@ -41,7 +43,7 @@ export const ConfirmButton = ({
 
 	return (
 		<>
-			<Button onClick={onOpen} colorScheme={isDanger ? 'red' : ''}>
+			<Button onClick={onOpen} colorScheme={isDanger ? 'red' : undefined}>
 				{buttonText}
 			</Button>
 
@@ -56,9 +58,9 @@ export const ConfirmButton = ({
 
 					<ModalFooter>
 						<Button variant="ghost" onClick={onClose} mr={3}>
-							Close
+							{closeButtonText}
 						</Button>
-						<Button colorScheme={isDanger ? 'red' : ''} onClick={onSubmit}>
+						<Button colorScheme={isDanger ? 'red' : undefined} onClick={onSubmit}>
 							{buttonText}
 						</Button>
 					</ModalFooter>
