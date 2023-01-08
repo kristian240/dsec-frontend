@@ -4,7 +4,6 @@ import { FC } from 'react';
 export const DashboardRepoListItemFallback: FC<FlexProps> = (props) => (
 	<Flex direction="column" gap={2} {...props}>
 		<Skeleton w="full" flex={6} borderRadius="lg" />
-		{/* <Skeleton w="60%" flex={1} borderRadius="lg" /> */}
 	</Flex>
 );
 
