@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegisterForm should matches snapshot 1`] = `
+<DocumentFragment>
+  <form>
+    <div
+      class="chakra-stack css-o5l3sd"
+    >
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r0:"
+          id="field-:r0:-label"
+        >
+          Email
+        </label>
+        <input
+          class="chakra-input css-0"
+          id="field-:r0:"
+          name="register-email"
+          placeholder="Email"
+          type="email"
+        />
+      </div>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r1:"
+          id="field-:r1:-label"
+        >
+          First name
+        </label>
+        <input
+          class="chakra-input css-0"
+          id="field-:r1:"
+          name="register-firstname"
+          placeholder="First name"
+        />
+      </div>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r2:"
+          id="field-:r2:-label"
+        >
+          Last name
+        </label>
+        <input
+          class="chakra-input css-0"
+          id="field-:r2:"
+          name="register-lastname"
+          placeholder="Last name"
+        />
+      </div>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r3:"
+          id="field-:r3:-label"
+        >
+          Password
+        </label>
+        <input
+          class="chakra-input css-0"
+          id="field-:r3:"
+          name="register-password"
+          placeholder="Password"
+          type="password"
+        />
+      </div>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r4:"
+          id="field-:r4:-label"
+        >
+          Repeat password
+        </label>
+        <input
+          class="chakra-input css-0"
+          id="field-:r4:"
+          name="register-passwordrepeat"
+          placeholder="Repeat password"
+          type="password"
+        />
+      </div>
+      <button
+        class="chakra-button css-4xx2wk"
+        type="submit"
+      >
+        Sign up
+      </button>
+      <p
+        class="chakra-text css-xi606m"
+      >
+        By creating an account, you are accepting our terms of service and privacy and cookie policy.
+      </p>
+    </div>
+  </form>
+</DocumentFragment>
+`;
