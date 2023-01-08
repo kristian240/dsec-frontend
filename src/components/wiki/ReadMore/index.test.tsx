@@ -1,20 +1,21 @@
+import { Topics } from '@/components/wiki/Topic';
 import { axe } from 'jest-axe';
 
 import { act, render } from 'test-utils';
-import LoginForm from './';
+import ReadMore from './';
 
 const mockRouterPush = jest.fn();
 jest.mock('next/router', () => ({ useRouter: jest.fn(() => ({ push: mockRouterPush })) }));
 
-describe('LoginForm', () => {
+describe('ReadMore', () => {
 	it('should matches snapshot', () => {
-		const { asFragment } = render(<LoginForm />);
+		const { asFragment } = render(<ReadMore activeTopic={Topics.Design} />);
 
 		expect(asFragment()).toMatchSnapshot();
 	});
 
 	it('should be accessible', async () => {
-		const { container } = render(<LoginForm />);
+		const { container } = render(<ReadMore activeTopic={Topics.Design} />);
 
 		let results: Awaited<ReturnType<typeof axe>>;
 		await act(async () => {

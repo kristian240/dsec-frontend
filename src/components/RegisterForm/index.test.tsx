@@ -1,7 +1,7 @@
 import { axe } from 'jest-axe';
 
+import { act, render } from 'test-utils';
 import RegisterForm from './';
-import { act, render, screen } from 'test-utils';
 
 const mockRouterPush = jest.fn();
 jest.mock('next/router', () => ({ useRouter: jest.fn(() => ({ push: mockRouterPush })) }));
