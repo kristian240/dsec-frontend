@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmButton should matches snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="chakra-button css-4xx2wk"
+    type="button"
+  >
+    buttonText
+  </button>
+</DocumentFragment>
+`;
