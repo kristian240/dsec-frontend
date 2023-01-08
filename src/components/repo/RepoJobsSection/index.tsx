@@ -1,4 +1,4 @@
-import { CompliantBadge, TimeAgo } from '@/components/repo/RepoJobsSection/elements';
+import { CompliantBadge, TimeAgo, ToolOutput } from '@/components/repo/RepoJobsSection/elements';
 import { IJob } from '@/interfaces/api/IJob';
 import { post } from '@/utils/network';
 import { AddIcon, ExternalLinkIcon } from '@chakra-ui/icons';
@@ -124,33 +124,7 @@ export const RepoJobsSection: FC<IRepoJobsSectionProps> = ({ repoId, ...rest }) 
 							</AccordionButton>
 
 							<AccordionPanel pb={4}>
-								{job.log?.results && job.log.results.length > 0 ? (
-									<VStack align="stretch">
-										{job.log.results?.map((log) => {
-											const parsedFile = log.file?.split('/').slice(1).join('/');
-
-											return (
-												<Box key={log.fingerprint} borderLeft="1px" pl={2}>
-													<Text>{log.description}</Text>
-													<Text>
-														<Button
-															as={Link}
-															rightIcon={<ExternalLinkIcon />}
-															variant="link"
-															color="primary.500"
-															href={`${job.repo.htmlUrl}/blob/${job.repo.defaultBranch}/${parsedFile}#L${log.startLine}-L${log.endLine}`}
-															isExternal
-														>
-															{parsedFile}
-														</Button>
-													</Text>
-												</Box>
-											);
-										})}
-									</VStack>
-								) : (
-									<Text>No logs to show</Text>
-								)}
+								<ToolOutput job={job} />
 							</AccordionPanel>
 						</AccordionItem>
 					);

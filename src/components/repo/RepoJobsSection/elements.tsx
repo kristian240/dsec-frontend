@@ -1,5 +1,19 @@
-import { CheckIcon, WarningTwoIcon } from '@chakra-ui/icons';
-import { Spinner, Tag, TagLabel, TagLeftIcon, TagProps } from '@chakra-ui/react';
+import { IBanditJob, IFlawFinderJob, IGitLeaksJob, IGoKartJob, IJob, IProgPilotJob } from '@/interfaces/api/IJob';
+import { CheckIcon, ExternalLinkIcon, WarningTwoIcon } from '@chakra-ui/icons';
+import {
+	Box,
+	Button,
+	Link,
+	Spinner,
+	StackProps,
+	SystemProps,
+	Tag,
+	TagLabel,
+	TagLeftIcon,
+	TagProps,
+	Text,
+	VStack,
+} from '@chakra-ui/react';
 import { FC, useEffect, useReducer } from 'react';
 import { format } from 'timeago.js';
 
@@ -49,4 +63,155 @@ export const CompliantBadge: FC<ICompliantBadgeProps> = ({ compliant, loading, .
 			<TagLabel>Not Compliant</TagLabel>
 		</Tag>
 	);
+};
+
+interface IToolOutput extends SystemProps {
+	job?: IJob;
+}
+
+export const ToolOutput: FC<IToolOutput> = ({ job, ...rest }) => {
+	if (job.tool.toolName === 'GITLEAKS') {
+		if (!(job.log as IGitLeaksJob)?.results?.length) return <Text {...rest}>No logs to show</Text>;
+
+		return (
+			<VStack align="stretch" {...rest}>
+				{(job.log as IGitLeaksJob).results.map((log) => {
+					const parsedFile = log.file?.split('/').slice(1).join('/');
+
+					return (
+						<Box key={log.fingerprint} borderLeft="1px" pl={2}>
+							<Text>{log.description}</Text>
+							<Text>
+								<Button
+									as={Link}
+									rightIcon={<ExternalLinkIcon />}
+									variant="link"
+									color="primary.500"
+									href={`${job.repo.htmlUrl}/blob/${job.repo.defaultBranch}/${parsedFile}#L${log.startLine}-L${log.endLine}`}
+									isExternal
+								>
+									{parsedFile}
+								</Button>
+							</Text>
+						</Box>
+					);
+				})}
+			</VStack>
+		);
+	}
+
+	if (job.tool.toolName === 'PROGPILOT' || job.tool.toolName === 'BANDIT') {
+		if (!(job.log as IProgPilotJob | IGoKartJob)?.results?.length) return <Text {...rest}>No logs to show</Text>;
+
+		return (
+			<VStack align="stretch" {...rest}>
+				{(job.log as IProgPilotJob | IBanditJob).results.map((log) => {
+					const parsedFile = log.sinkFile?.split(/\d{1,2}:\d{1,2}:\d{1,2}\.\d+/)?.[1];
+
+					return (
+						<Box key={log.vulnId} borderLeft="1px" pl={2}>
+							<Text>
+								<Link
+									href={`https://www.cvedetails.com/cwe-details/${log.vulnCwe?.split('_')?.[1]}/cwe.html`}
+									isExternal
+								>
+									{log.vulnName} | {log.vulnCwe}
+								</Link>
+							</Text>
+							<Text>
+								<Button
+									as={Link}
+									rightIcon={<ExternalLinkIcon />}
+									variant="link"
+									color="primary.500"
+									href={`${job.repo.htmlUrl}/blob/${job.repo.defaultBranch}${parsedFile}#L${log.sinkLine}`}
+									isExternal
+								>
+									{parsedFile}
+								</Button>
+							</Text>
+						</Box>
+					);
+				})}
+			</VStack>
+		);
+	}
+
+	if (job.tool.toolName === 'GOKART') {
+		if (!(job.log as IGoKartJob)?.results?.length) return <Text {...rest}>No logs to show</Text>;
+
+		return (
+			<VStack align="stretch" {...rest}>
+				{(job.log as IGoKartJob).results.map((log) => {
+					const cwe = log.type.match(/\d+/);
+					const parsedFile = log.vulnerableFunction?.sourceFilename?.split(/\d{1,2}:\d{1,2}:\d{1,2}\.\d+/)?.[1];
+
+					return (
+						<Box key={log.type + parsedFile} borderLeft="1px" pl={2}>
+							<Text>
+								<Link href={`https://www.cvedetails.com/cwe-details/${cwe}/cwe.html`} isExternal>
+									{log.type}
+								</Link>
+							</Text>
+							<Text>
+								<Button
+									as={Link}
+									rightIcon={<ExternalLinkIcon />}
+									variant="link"
+									color="primary.500"
+									href={`${job.repo.htmlUrl}/blob/${job.repo.defaultBranch}${parsedFile}#L${log.vulnerableFunction?.sourceLineNum}`}
+									isExternal
+								>
+									{parsedFile}
+								</Button>
+							</Text>
+						</Box>
+					);
+				})}
+			</VStack>
+		);
+	}
+
+	if (job.tool.toolName === 'FLAWFINDER') {
+		if (!(job.log as IFlawFinderJob)?.runs?.[0]?.results?.length) return <Text {...rest}>No logs to show</Text>;
+
+		return (
+			<VStack align="stretch" {...rest}>
+				{(job.log as IFlawFinderJob).runs[0].results.map((log) => {
+					const cwe = log.message.text?.match(/CWE-(\d+)/)?.[1];
+					const parsedFile =
+						log.locations[0].physicalLocation?.artifactLocation?.uri?.split(/\d{1,2}:\d{1,2}:\d{1,2}\.\d+/)?.[1];
+
+					return (
+						<Box key={log.message.text} borderLeft="1px" pl={2}>
+							<Text>
+								<Link href={`https://www.cvedetails.com/cwe-details/${cwe}/cwe.html`} isExternal>
+									CWE-{cwe}
+								</Link>
+							</Text>
+							<Text>
+								<Button
+									as={Link}
+									rightIcon={<ExternalLinkIcon />}
+									variant="link"
+									color="primary.500"
+									href={`${job.repo.htmlUrl}/blob/${job.repo.defaultBranch}${parsedFile}#L${
+										log.locations[0].physicalLocation?.region?.startLine
+									}-L${
+										log.locations[0].physicalLocation?.region?.endLine ||
+										log.locations[0].physicalLocation?.region?.startLine
+									}`}
+									isExternal
+								>
+									{parsedFile}
+								</Button>
+							</Text>
+						</Box>
+					);
+				})}
+			</VStack>
+		);
+	}
+
+	return null;
 };

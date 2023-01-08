@@ -30,8 +30,21 @@ exports[`MainLayout should matches snapshot 1`] = `
       </div>
     </header>
     <main
-      class="css-1rr4qq7"
+      class="css-164omxi"
     />
+    <footer
+      class="css-3g3hum"
+    >
+      <div
+        class="chakra-container css-cl2x7c"
+      >
+        <p
+          class="chakra-text css-ydyztb"
+        >
+          2023 © DSec
+        </p>
+      </div>
+    </footer>
   </div>
 </DocumentFragment>
 `;
