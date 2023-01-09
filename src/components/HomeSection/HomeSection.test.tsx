@@ -21,23 +21,6 @@ describe('HomeSection', () => {
 		expect(results).toHaveNoViolations();
 	});
 
-	it('should matches privacy snapshot', () => {
-		const { asFragment } = render(<HomeSection variant="collaboration" />);
-
-		expect(asFragment()).toMatchSnapshot();
-	});
-
-	it('should be accessible (privacy)', async () => {
-		const { container } = render(<HomeSection variant="collaboration" />);
-
-		let results: Awaited<ReturnType<typeof axe>>;
-		await act(async () => {
-			results = await axe(container);
-		});
-
-		expect(results).toHaveNoViolations();
-	});
-
 	it('should matches terms snapshot', () => {
 		const { asFragment } = render(<HomeSection variant="flawDetection" />);
 

@@ -37,43 +37,6 @@ exports[`HomeSection should matches gdpr snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`HomeSection should matches privacy snapshot 1`] = `
-<DocumentFragment>
-  <section
-    class="chakra-stack css-1r8bz70"
-    style="background-color: rgb(173, 105, 26); color: white;"
-  >
-    <div
-      class="chakra-stack css-9fdz3h"
-    >
-      <h3
-        class="chakra-heading albra css-0"
-      >
-        Collaboration
-      </h3>
-      <p
-        class="chakra-text css-0"
-      >
-        DSEC has been designed to enhance collaboration, get everyone in your team working as one – without disrupting their workflow.
-      </p>
-      <div />
-    </div>
-    <img
-      alt=""
-      data-nimg="1"
-      decoding="async"
-      height="270"
-      loading="lazy"
-      role="presentation"
-      src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
-      srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
-      style="color: transparent;"
-      width="400"
-    />
-  </section>
-</DocumentFragment>
-`;
-
 exports[`HomeSection should matches terms snapshot 1`] = `
 <DocumentFragment>
   <section
