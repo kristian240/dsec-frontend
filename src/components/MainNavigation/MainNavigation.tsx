@@ -34,9 +34,6 @@ export const MainNavigation: FC<FlexProps> = (props) => {
 	return (
 		<Flex as="nav" justify="space-between" align="inherit" flex={1} {...props}>
 			<Flex align="inherit" gap={8}>
-				<Link as={NextLink} href="/features">
-					{t('label.feature_other')}
-				</Link>
 				<Link as={NextLink} href="/wiki">
 					{t('label.aboutSsdlc')}
 				</Link>

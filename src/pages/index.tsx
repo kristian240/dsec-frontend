@@ -32,7 +32,6 @@ const Home: NextPage<HomeProps> = () => {
 				<VStack spacing="6rem">
 					<HomeSection variant={'flawDetection'} />
 					<HomeSection variant={'gdpr'} />
-					<HomeSection variant={'collaboration'} />
 				</VStack>
 			</Container>
 		</MainLayout>

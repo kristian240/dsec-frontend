@@ -3,7 +3,6 @@ import Image, { StaticImageData } from 'next/image';
 import { CSSProperties, FC } from 'react';
 import Gdpr from '../../images/gdpr.png';
 import Security from '../../images/security.png';
-import Team from '../../images/team.png';
 
 type Variant = {
 	title: string;
@@ -15,7 +14,6 @@ type Variant = {
 type Variants = {
 	gdpr: Variant;
 	flawDetection: Variant;
-	collaboration: Variant;
 };
 
 const variants: Variants = {
@@ -31,17 +29,10 @@ const variants: Variants = {
 		style: { backgroundColor: '#BB82F8', color: '#161616' },
 		img: Security,
 	},
-	collaboration: {
-		title: 'Collaboration',
-		description:
-			'DSEC has been designed to enhance collaboration, get everyone in your team working as one – without disrupting their workflow.',
-		style: { backgroundColor: '#AD691A', color: 'white' },
-		img: Team,
-	},
 };
 
 interface HomeSectionProps {
-	variant: 'gdpr' | 'flawDetection' | 'collaboration';
+	variant: 'gdpr' | 'flawDetection';
 }
 
 const HomeSection: FC<HomeSectionProps> = ({ variant }) => {
