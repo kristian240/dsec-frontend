@@ -1,21 +1,24 @@
 import { Box, Container, Flex, Heading, Text } from '@chakra-ui/react';
-import { CSSProperties } from '@emotion/serialize';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 interface TipProps {
 	align: 'left' | 'right';
 	title: string;
 	description: string;
 	index: number;
-	accentColor: string;
+	accentColor?: string;
 }
 
 const Tip: React.FC<TipProps> = ({ align, title, description, index, accentColor }) => {
+	const bgColor = accentColor || 'fff';
+	const color = accentColor ? '#fff' : '#161616';
+	const flexDirection = align === 'left' ? 'row' : 'row-reverse';
+
 	return (
-		<Container maxW="100%" bgColor={align === 'left' ? 'white' : accentColor} px="calc((100% - 800px) / 2)">
-			<Flex sx={styles[align]} alignItems="center" py="100" justifyContent="space-between">
+		<Container maxW="100%" bgColor={bgColor} px="calc((100% - 800px) / 2)">
+			<Flex sx={{ color, flexDirection }} alignItems="center" py="100" justifyContent="space-between">
 				<Heading as="span" w="40%" textAlign="center" className="albra" fontSize="5rem">
-					#{index + 1}
+					#{index}
 				</Heading>
 				<Box w="60%">
 					<Heading as="h2" className="albra" mb=".3em">
@@ -26,17 +29,6 @@ const Tip: React.FC<TipProps> = ({ align, title, description, index, accentColor
 			</Flex>
 		</Container>
 	);
-};
-
-const styles: { left: CSSProperties; right: CSSProperties } = {
-	left: {
-		flexDirection: 'row',
-		color: '#161616',
-	},
-	right: {
-		flexDirection: 'row-reverse',
-		color: 'white',
-	},
 };
 
 export default Tip;
