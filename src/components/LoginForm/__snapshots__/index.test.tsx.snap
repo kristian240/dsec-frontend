@@ -68,11 +68,6 @@ exports[`LoginForm should matches snapshot 1`] = `
       >
         Login
       </button>
-      <p
-        class="chakra-text css-xi606m"
-      >
-        Have you forgot you password?
-      </p>
     </div>
   </form>
 </DocumentFragment>

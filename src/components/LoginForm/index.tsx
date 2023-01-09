@@ -34,8 +34,6 @@ export default function LoginForm() {
 				<Button type="submit" colorScheme="blue">
 					Login
 				</Button>
-
-				<Text textAlign="center">Have you forgot you password?</Text>
 			</VStack>
 		</form>
 	);
