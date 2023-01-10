@@ -9,7 +9,7 @@ jest.mock('next/router', () => ({ useRouter: jest.fn(() => ({ push: mockRouterPu
 
 describe('ReadMore', () => {
 	it('should matches snapshot', () => {
-		const { asFragment } = render(<ReadMore activeTopic={Topics.Design} />);
+		const { asFragment } = render(<ReadMore activeTopic={Topics.Requirements} />);
 
 		expect(asFragment()).toMatchSnapshot();
 	});
