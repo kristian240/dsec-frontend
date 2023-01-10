@@ -9,7 +9,7 @@ const TestingWikiPage = () => {
 	const accentColor = '#A13976';
 
 	return (
-		<WikiPage title="Deployment" accentColor={accentColor}>
+		<WikiPage title="Testing" accentColor={accentColor}>
 			<Tip
 				title="Perform security testing"
 				description="Test the software specifically for security vulnerabilities and issues. This can include testing for vulnerabilities such as cross-site scripting (XSS) and SQL injection."

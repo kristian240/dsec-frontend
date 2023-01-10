@@ -35,27 +35,6 @@ exports[`ReadMore should matches snapshot 1`] = `
         />
       </a>
       <a
-        class="chakra-stack css-j683cg"
-        href="/wiki/design"
-      >
-        <p
-          class="chakra-text css-0"
-        >
-          Design
-        </p>
-        <img
-          alt=""
-          data-nimg="1"
-          decoding="async"
-          height="100"
-          loading="lazy"
-          src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
-          srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
-          style="color: transparent;"
-          width="150"
-        />
-      </a>
-      <a
         class="chakra-stack css-n2ydgl"
         href="/wiki/development"
       >
