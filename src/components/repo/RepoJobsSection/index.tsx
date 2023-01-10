@@ -1,7 +1,7 @@
 import { CompliantBadge, TimeAgo, ToolOutput } from '@/components/repo/RepoJobsSection/elements';
 import { IJob } from '@/interfaces/api/IJob';
 import { post } from '@/utils/network';
-import { AddIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 import {
 	Accordion,
 	AccordionButton,
@@ -14,10 +14,8 @@ import {
 	Center,
 	Flex,
 	Heading,
-	Link,
 	Spinner,
 	Text,
-	VStack,
 } from '@chakra-ui/react';
 import utcToZonedTime from 'date-fns-tz/utcToZonedTime';
 import { FC, useMemo } from 'react';
