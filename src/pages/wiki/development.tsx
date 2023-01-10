@@ -42,7 +42,7 @@ const DevelopmentWikiPage = () => {
 				align={'left'}
 				index={5}
 			/>
-			<ReadMore activeTopic={Topics.Deployment} />
+			<ReadMore activeTopic={Topics.Development} />
 		</WikiPage>
 	);
 };
